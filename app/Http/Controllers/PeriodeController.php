@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Periode;
-use App\Http\Requests\cekPeriode;
+// use App\Http\Requests\cekPeriode;
 
 class PeriodeController extends Controller
 {
@@ -40,7 +40,7 @@ class PeriodeController extends Controller
     public function store(Request $request)
     {
        
-        request()->validate([
+        $validated = request()->validate([
             'Periode_Penerimaan' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
             'Tanggal_Mulai_Ujian' => 'required',
             'Tanggal_Akhir_Ujian' => 'required',
@@ -52,7 +52,7 @@ class PeriodeController extends Controller
 
 
         // $validated = $request->validate([
-        //     'Periode_Penerimaan' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+        //     'Periode_Penerimaan' => 'required',
         //     'Tanggal_Mulai_Ujian' => 'required',
         //     'Tanggal_Akhir_Ujian' => 'required',
         //     'Keterangan' => 'required',
@@ -60,6 +60,16 @@ class PeriodeController extends Controller
 
         Periode::create($request->all());
         return redirect('/admin/periode')->with('status', 'Data telah berhasil ditambahkan');
+
+        // $validated = $request->validate([
+        //     'Periode_Penerimaan' => 'required|max:25',
+        //     'Tanggal_Mulai_Ujian' => 'required',
+        //     'Tanggal_Akhir_Ujian' => 'required',
+        //     'Keterangan' => 'required',
+        // ]);
+
+        // Periode::create($request->all());
+        // return redirect('/admin/periode')->with('status', 'Data telah berhasil ditambahkan');
     }
 
     /**

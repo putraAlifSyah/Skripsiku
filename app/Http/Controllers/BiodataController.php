@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wartawan;
 use Illuminate\Http\Request;
 
 class BiodataController extends Controller
@@ -33,8 +34,31 @@ class BiodataController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $validatedData = request()->validate([
+            'Nama' => 'required',
+            'Alamat' => 'required',
+            'Handphone' => 'required',
+            'Pendidikan' => 'required',
+            'KTP' => 'required|file|mimes:pdf,jpg|max:100000',
+            'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg|max:100000',
+            'Foto' => 'required|file|mimes:pdf,jpg|max:100000',
+            'CV' => 'required|file|mimes:pdf,jpg|max:100000',
+            'Surat_Lamaran' => 'required|file|mimes:pdf,jpg|max:100000',
+            'Verifikasi' => 'required',
+            'Melamar' => 'required',
+            'Periode' => 'required',
+            'id_user' => 'required',
+        ]);
+        // dd('halo');
+        // dd($validatedData['Ijazah_Terakhir']);
+        $validatedData['Ijazah_Terakhir'] = $request->file('Ijazah_Terakhir')->store('WartawanData');
+        $validatedData['Foto'] = $request->file('Foto')->store('WartawanData');
+        $validatedData['CV'] = $request->file('CV')->store('WartawanData');
+        $validatedData['Surat_Lamaran'] = $request->file('Surat_Lamaran')->store('WartawanData');
+        $validatedData['KTP'] = $request->file('KTP')->store('WartawanData');
+        Wartawan::create($validatedData);
+        return redirect('/')->with('status', 'Biodata Berhasil Ditambahkan');
     }
 
     /**

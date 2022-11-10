@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="Kode">Kode/Simbol</label>
             <select name="Kode" class="form-control" id="Kode">
-                <option value="">{{ $datakriteria->Kode }}</option>
+                <option value="{{ $datakriteria->Kode }}">{{ $datakriteria->Kode }}</option>
                 <option value="C1">C1</option>
                 <option value="C2">C2</option>
                 <option value="C3">C3</option>

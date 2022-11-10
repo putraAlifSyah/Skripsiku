@@ -29,7 +29,7 @@
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
-        <strong>Data Karyawan</strong>
+        <strong>Data Periode</strong>
     </div>
     <div class="pull-right">
         <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>

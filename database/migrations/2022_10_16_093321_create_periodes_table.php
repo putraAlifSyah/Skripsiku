@@ -16,8 +16,9 @@ class CreatePeriodesTable extends Migration
         Schema::create('periodes', function (Blueprint $table) {
             $table->id();
             $table->string('Periode_Penerimaan');
+            $table->date('Tanggal_Mulai_Pendaftaran');
+            $table->date('Tanggal_Akhir_Pendaftaran');
             $table->date('Tanggal_Mulai_Ujian');
-            $table->date('Tanggal_Akhir_Ujian');
             $table->string('Keterangan');
             $table->timestamps();
         });

@@ -32,7 +32,7 @@
    <div class="col-md-4 offset-md-4">
         <div class="form-group">
             <label for="Periode_Penerimaan" class="col-xs-2 col-form-label">Periode Pendaftaran</label>
-            <input type="text" class="form-control" id="Periode_Penerimaan" name="c" value="{{ old('Periode_Penerimaan') }}">
+            <input type="text" class="form-control" id="Periode_Penerimaan" name="Periode_Penerimaan" value="{{ old('Periode_Penerimaan') }}">
             {{-- @if (session('salahformat'))
                 <div class="alert alert-danger">
                     {{ session('salahformat') }}

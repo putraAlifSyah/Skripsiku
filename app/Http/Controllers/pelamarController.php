@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Periode;
+use App\Models\Wartawan;
 use Illuminate\Http\Request;
 
 class pelamarController extends Controller
@@ -13,7 +15,13 @@ class pelamarController extends Controller
      */
     public function index()
     {
-        return view ('/HalamanUser/index');
+        $periode=Periode::all();
+        $data = Wartawan::all();
+        // dd($periode);
+        return view ('/HalamanUser/index', [
+            'periode'=>$periode,
+            'data' => $data
+        ]);
     }
 
     /**

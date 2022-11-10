@@ -26,14 +26,10 @@ class CreateWartawansTable extends Migration
             $table->string('Surat_Lamaran');
             $table->string('Verifikasi');
             $table->string('Melamar');
-            $table->bigInteger('id_user')->unsigned();
+            $table->string('Periode')->nullable();
+            $table->integer('id_user');
             $table->timestamps();
         });
-
-        Schema::table('wartawans', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade');
-        });
-
     }
 
     /**

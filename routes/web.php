@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Boleh diakses user
+// Boleh diakses sebelum login
 Route::get('/', 'pelamarController@index');
 
+// bisa diakses oleh user
 // biodata user
-Route::middleware(['auth:sanctum', 'verified'])->get('/biodata', 'BiodataController@index');
-
-
-
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    // data kriteria
+    Route::get('/biodata', 'BiodataController@index');
+    Route::post('/IsiBiodata', 'BiodataController@store');
+    
+});
 // hanya boleh diakses admin
 
 Route::middleware(['auth', 'is_admin'])->group(function(){
