@@ -42,7 +42,7 @@ class BiodataController extends Controller
             'Pendidikan' => 'required',
             'KTP' => 'required|file|mimes:pdf,jpg|max:100000',
             'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg|max:100000',
-            'Foto' => 'required|file|mimes:pdf,jpg|max:100000',
+            'Foto' => 'required|file|image|max:100000',
             'CV' => 'required|file|mimes:pdf,jpg|max:100000',
             'Surat_Lamaran' => 'required|file|mimes:pdf,jpg|max:100000',
             'Verifikasi' => 'required',

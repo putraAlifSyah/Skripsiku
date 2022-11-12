@@ -12,9 +12,18 @@ class wartawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function verifikasi(Request $request){
+        wartawan::where('id_wartawan', $request->wartawan)
+                    ->update([
+                        'verifikasi'=>'Sudah',
+                    ]);
+        return redirect('/admin/wartawan')->with ('status', 'Data telah berhasil diverifkasi');
+    }
+    
     public function index()
     {
-        $data=Wartawan::all();
+        $data=Wartawan::where('periode', '!=', 'kosong')->get();
         return view ('/Data_Wartawan/DataWartawan', [
             'data'=>$data,
         ]);

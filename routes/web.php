@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// coba tambah kolom
+Route::get('/coba/tambah', 'cobaController@tambahColomn');
+
 // Boleh diakses sebelum login
 Route::get('/', 'pelamarController@index');
 
@@ -56,7 +59,7 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');
-    Route::get('/admin/wartawan/tambah', 'wartawanController@create');
+    Route::get('/admin/wartawan/{wartawan}/verifikasi', 'wartawanController@verifikasi');
     // Route::post('/admin/periode', 'wartawanController@store');
     // Route::delete('/admin/periode/{periode}', 'wartawanController@destroy');
     // Route::get('/admin/periode/{periode}/edit', 'wartawanController@edit');

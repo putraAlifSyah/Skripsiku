@@ -5,7 +5,9 @@
         form.ini{
             display:inline-block;
         }
-
+        .hide{
+            display:none;  
+        }
 
     </style>
     <meta charset="utf-8">
@@ -40,11 +42,11 @@
                 <a class="navbar-brand hidden" href="">H</a>
             </div>
    
- 
+            {{-- dd(Auth::user()->LevelLogin); --}}
             <div id="main-menu" class="main-menu collapse navbar-collapse" >
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/admin/home"> <i class="menu-icon fa fa-dashboard"></i>Home</a>
+                        <a href="/admin/home"><i class="menu-icon fa fa-dashboard"></i>Home</a>
                     </li>
                     <li>
                         <a href="/admin/wartawan"> <i class="menu-icon fa fa-calendar"></i>Data Calon Wartawan</a>

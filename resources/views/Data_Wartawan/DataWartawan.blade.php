@@ -3,6 +3,9 @@
 @section('title','Home')
 
 @section('juduldalam')
+{{-- @php
+    dd(Auth::user()->LevelLogin);
+@endphp --}}
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
@@ -31,9 +34,9 @@
     <div class="pull-left" style="margin-bottom:10px">
         <strong>Data Wartawan</strong>
     </div>
-    <div class="pull-right">
+    {{-- <div class="pull-right">
         <a href="/admin/wartawan/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
-    </div>
+    </div> --}}
     <table class="table table-striped">
     <thead class="table-dark">
         <tr>
@@ -42,12 +45,13 @@
             <th>Alamat</th>
             <th>Handphone</th>
             <th>Pendidikan Terakhir</th>
-            <th>KTP</th>
-            <th>Ijazah_Terakhir</th>
             <th>Foto</th>
+            <th>Ijazah_Terakhir</th>
+            <th>KTP</th>
             <th>CV</th>
             <th>Surat_Lamaran</th>
             <th>Verifikasi</th>
+            <th>Periode</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -60,21 +64,16 @@
             <td>{{$data->Alamat}}</td>
             <td>{{$data->Handphone}}</td>
             <td>{{$data->Pendidikan}}</td>
-            <td>{{$data->KTP}}</td>
-            <td>{{$data->Ijazah_Terakhir}}</td>
-            <td>{{$data->Foto}}</td>
-            <td>{{$data->CV}}</td>
-            <td>{{$data->Surat_Lamaran}}</td>
+            <td> <img src="{{ asset('storage/'.$data->Foto) }}" alt="" style="width: 200px"> </td>
+            <td><a href="{{ asset('storage/'.$data->Ijazah_Terakhir) }}">Ijazah</a></td>
+            <td><a href="{{ asset('storage/'.$data->KTP) }}">KTP</a></td>
+            <td><a href="{{ asset('storage/'.$data->CV) }}">CV</a></td>
+            <td><a href="{{ asset('storage/'.$data->Surat_Lamaran) }}">Surat Lamaran</a></td>
             <td>{{$data->Verifikasi}}</td>
+            <td>{{$data->Periode}}/{{ $data->Periode+1 }}</td>
                 <td>
                 <div class="card-body">
-                    <a href="wartawan/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Ubah</a>
-                    <form action="/admin/wartawan/{{$data->id}}" method="post" class="ini">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn-xs btn-danger rounded" onclick="return confirm('Are you sure?')" style="font-size:13.5px">Hapus</buton>          
-                    </form> 
-                    <div class="clear"></div>
+                    <a href="wartawan/{{$data->id_wartawan}}/verifikasi" class="btn-sm btn-success rounded tombol">Verifikasi</a>
                 </div>
                 </td>
         </tr>
@@ -87,7 +86,7 @@
     </div>
     </div>
 <!-- </div> -->
-@if (session('status'))
+        @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
