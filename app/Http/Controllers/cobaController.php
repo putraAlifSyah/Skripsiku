@@ -4,18 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Artisan;
 
 class cobaController extends Controller
 {
     public function tambahColomn(){
-        Route::get('user-data', function() {
-            $model = App\User::query();
-         
-            return DataTables::eloquent($model)
-                        ->addColumn('intro', 'Hi {{$name}}!')
-                        ->toJson();
-        });
+        $connection= mysqli_connect('127.0.0.1', 'root', '', 'wartawan_spk');
+        if ($connection->connect_error) {
+            die("Connection failed: " . $connection->connect_error);
+          }
+          $added= mysqli_query($connection, "ALTER TABLE cobas ADD bayar VARCHAR(50) NOT NULL");
 
-        return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil dihapus');
+          if($added !== FALSE)
+          {
+             echo("The column has been added.");
+          }else{
+             echo("The column has not been added.");
+          }
+    }
+    public function hapusKolom(){
+        $connection= mysqli_connect('127.0.0.1', 'root', '', 'wartawan_spk');
+        if ($connection->connect_error) {
+            die("Connection failed: " . $connection->connect_error);
+          }
+          $added= mysqli_query($connection, "ALTER TABLE cobas DROP bayar");
+
+          if($added !== FALSE)
+          {
+             echo("The column has been added.");
+          }else{
+             echo("The column has not been added.");
+          }
     }
 }

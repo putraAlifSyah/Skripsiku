@@ -34,7 +34,7 @@
                         Featured
                     </div>
                     <div class="card-body">
-                        <p>{{ Auth::user()->name }}</p><br>
+                        {{-- <p>{{ Auth::user()->name }}</p><br> --}}
                         <p class="card-text">Pertama silahkan membuat akun. kemudian login menggunakan akun yang telah
                             dibuat. berikutnya, lengkapi biodata untuk melakukan pendaftaran. terakhir tekan tombol "daftar"
                             yang tersedia sesuai dengan periode yang diikuti</p>

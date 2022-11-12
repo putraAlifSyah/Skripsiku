@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // coba tambah kolom
 Route::get('/coba/tambah', 'cobaController@tambahColomn');
+Route::get('/coba/hapus', 'cobaController@hapusKolom');
 
 // Boleh diakses sebelum login
 Route::get('/', 'pelamarController@index');

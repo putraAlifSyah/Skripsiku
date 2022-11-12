@@ -14,6 +14,34 @@ class kriteriaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function tambahColomn($query){
+        $connection= mysqli_connect('127.0.0.1', 'root', '', 'wartawan_spk');
+        if ($connection->connect_error) {
+            die("Connection failed: " . $connection->connect_error);
+          }
+          $added= mysqli_query($connection, $query);
+
+          if($added !== FALSE)
+          {
+             echo("The column has been added.");
+          }else{
+             echo("The column has not been added.");
+          }
+    }
+    public function hapusKolom($query){
+        $connection= mysqli_connect('127.0.0.1', 'root', '', 'wartawan_spk');
+        if ($connection->connect_error) {
+            die("Connection failed: " . $connection->connect_error);
+          }
+          $added= mysqli_query($connection, $query);
+
+          if($added !== FALSE)
+          {
+             echo("The column has been added.");
+          }else{
+            die(mysqli_error($connection));
+          }
+    }
 
     public function index()
     {
@@ -57,6 +85,10 @@ class kriteriaController extends Controller
      */
     public function store(Request $request, Datakriteria $datakriteria)
     {
+        
+        // $namaKolom=str_replace(' ', '_', $request->Kriteria);
+        // dd($namaKolom);
+        // dd(str_replace(' ', '_', $request->Kriteria));
         // Mengambil data data dari record sebelumnya, untuk mengubah bobotnya secara otomatis saat menambahkan data baru
         $data=DataKriteria::all();
         $jmlBobot=0;
@@ -98,6 +130,12 @@ class kriteriaController extends Controller
         }
 
         DataKriteria::create($request->all());
+
+        // menambah kolom baru di tabel nilai
+        $namaKolom=str_replace(' ', '_', $request->Kriteria);
+        $query = "ALTER TABLE nilai_awals ADD ".$namaKolom. "VARCHAR(255) NOT NULL";
+        self::tambahColomn("ALTER TABLE nilai_awals ADD ". $namaKolom ." VARCHAR(255) NOT NULL");
+
         return redirect('/admin/datakriteria')->with ('status', 'Data telah berhasil ditambahkan');
     }
 
@@ -184,6 +222,13 @@ class kriteriaController extends Controller
 
         $data=DataKriteria::all();
         $dataTerhapus=DataKriteria::where('id', $id)->first(['Bobot'])->Bobot;
+        
+
+        // menghapus kolom kriteria di tabel nilai_awals
+        $namaKolom=str_replace(' ', '_', $data[0]['Kriteria']);
+        // dd($namaKolom);
+        self::hapusKolom("ALTER TABLE `nilai_awals` DROP `$namaKolom`");
+
         DataKriteria::destroy($id);
         $jmlBobot=0;
         $kode=[];
@@ -202,6 +247,8 @@ class kriteriaController extends Controller
             $nilaiBobotAkhir=$bobotSebelumnya[$i-1]/$jmlBobot;
             self::UbahBobot2($kode[$i-1], $jmlBobot, $nilaiBobotAkhir);
         }
+
+        
 
         return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil dihapus');
     }
