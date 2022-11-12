@@ -70,6 +70,7 @@
 
         <div class="form-group">
             <input type="hidden" class="form-control" id="Perbaikan_Bobot" name="Perbaikan_Bobot" value="{{ $datakriteria->Perbaikan_Bobot }}">
+            <input type="hidden" class="form-control" id="Kriteria_Lama" name="Kriteria_Lama" value="{{ $datakriteria->Kriteria }}">
         </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>

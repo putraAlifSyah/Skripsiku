@@ -43,6 +43,21 @@ class kriteriaController extends Controller
           }
     }
 
+    public function ubahKolom($query){
+        $connection= mysqli_connect('127.0.0.1', 'root', '', 'wartawan_spk');
+        if ($connection->connect_error) {
+            die("Connection failed: " . $connection->connect_error);
+          }
+          $added= mysqli_query($connection, $query);
+
+          if($added !== FALSE)
+          {
+             echo("The column has been added.");
+          }else{
+            die(mysqli_error($connection));
+          }
+    }
+
     public function index()
     {
         
@@ -171,6 +186,8 @@ class kriteriaController extends Controller
     // Request $request, $id
     public function update(Request $request, Datakriteria $datakriteria)
     {
+
+        // dd(str_replace(' ', '_', $request->Kriteria_Lama));
         
         // cek duplikat
         $duplikat = DataKriteria::where('Kode',$request->Kode)->first();
@@ -208,6 +225,13 @@ class kriteriaController extends Controller
             self::UbahBobot2($kode[$i-1], $jmlBobot, $nilaiBobotAkhir);
         }
 
+        // ubah nama kolom
+        $kolomLama=str_replace(' ', '_', $request->Kriteria_Lama);
+        $kolomBaru=str_replace(' ', '_', $request->Kriteria);
+        // ALTER TABLE table_name RENAME COLUMN old_col_name TO new_col_name;
+        // ALTER TABLE tableName CHANGE oldcolname newcolname datatype(length);
+        self::ubahKolom("ALTER TABLE nilai_awals CHANGE ". $kolomLama ." ".$kolomBaru. " INTEGER(5)");
+
         return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil diubah');
     }
 
@@ -244,12 +268,12 @@ class kriteriaController extends Controller
         
         // var_dump($panjangArray);die;
         for ($i=1; $i <= $panjangArray; $i++) { 
+            if ($panjangArray == 1) {
+                return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil dihapus');
+            }
             $nilaiBobotAkhir=$bobotSebelumnya[$i-1]/$jmlBobot;
             self::UbahBobot2($kode[$i-1], $jmlBobot, $nilaiBobotAkhir);
         }
-
-        
-
         return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil dihapus');
     }
 }
