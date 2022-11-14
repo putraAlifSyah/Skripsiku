@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NilaiAwal;
 use Illuminate\Http\Request;
 use App\Models\Wartawan;
 
@@ -18,6 +19,13 @@ class wartawanController extends Controller
                     ->update([
                         'verifikasi'=>'Sudah',
                     ]);
+        $data = wartawan::where('id_wartawan', $request->wartawan)->get();
+        // dd($data[0]['Nama']);
+        $NilaiAwal = NilaiAwal::create([
+            'id_calon' => $data[0]['id_wartawan'],
+            'nama_calon' => $data[0]['Nama'],
+            'periode' => $data[0]['Periode'],
+        ]);
         return redirect('/admin/wartawan')->with ('status', 'Data telah berhasil diverifkasi');
     }
     

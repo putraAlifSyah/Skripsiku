@@ -58,7 +58,7 @@
                         <a href="/admin/datakriteria"> <i class="menu-icon fa fa-calendar"></i>Data Kriteria</a>
                     </li>
                     <li>
-                        <a href="/admin/jadwal"> <i class="menu-icon fa fa-calendar"></i>Data Nilai</a>
+                        <a href="/admin/nilaiawal"> <i class="menu-icon fa fa-calendar"></i>Data Nilai</a>
                     </li>
                     <li>
                         <a href="/adminabout"> <i class="menu-icon fa fa-info"></i>Hasil SPK</a>

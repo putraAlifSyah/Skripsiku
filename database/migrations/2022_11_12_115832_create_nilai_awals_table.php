@@ -17,6 +17,7 @@ class CreateNilaiAwalsTable extends Migration
             $table->id();
             $table->integer('id_calon');
             $table->string('nama_calon');
+            $table->string('periode');
             $table->timestamps();
         });
     }

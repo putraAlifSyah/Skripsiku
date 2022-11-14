@@ -58,6 +58,16 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::get('/admin/periode/{periode}/edit', 'PeriodeController@edit');
     Route::patch('/admin/periode/{periode}', 'PeriodeController@update');
 
+    // Input Nilai Normal
+    Route::get('/admin/nilaiawal', 'NilaiAwalController@index');
+    // Route::get('/admin/nilaiawal/tambah', 'NilaiAwalController@create');
+    // Route::post('/admin/nilaiawal', 'NilaiAwalController@store');
+    Route::delete('/admin/nilaiawal/{nilaiawal}', 'NilaiAwalController@destroy');
+    Route::get('/admin/nilaiawal/{nilaiawal}/input', 'NilaiAwalController@create');
+    Route::post('/admin/nilaiawal/input', 'NilaiAwalController@store');
+    Route::get('/admin/nilaiawal/{nilaiawal}/edit', 'NilaiAwalController@edit');
+    Route::patch('/admin/nilaiawal/{nilaiawal}', 'NilaiAwalController@update');
+
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');
     Route::get('/admin/wartawan/{wartawan}/verifikasi', 'wartawanController@verifikasi');

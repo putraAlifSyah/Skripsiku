@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use App\Models\DataKriteria;
 
 class kriteriaController extends Controller
@@ -60,7 +61,6 @@ class kriteriaController extends Controller
 
     public function index()
     {
-        
         $data=DataKriteria::all();
         return view ('/Data_Kriteria/DataKriteria', [
             'data'=>$data,
@@ -89,6 +89,8 @@ class kriteriaController extends Controller
      */
     public function create()
     {
+        // $columns = Schema::getColumnListing('data_kriterias');
+        // dd($columns[0]);
         return view('Data_Kriteria/TambahDataKriteria');
     }
 
@@ -148,8 +150,8 @@ class kriteriaController extends Controller
 
         // menambah kolom baru di tabel nilai
         $namaKolom=str_replace(' ', '_', $request->Kriteria);
-        $query = "ALTER TABLE nilai_awals ADD ".$namaKolom. "VARCHAR(255) NOT NULL";
-        self::tambahColomn("ALTER TABLE nilai_awals ADD ". $namaKolom ." VARCHAR(255) NOT NULL");
+        $query = "ALTER TABLE nilai_awals ADD ".$namaKolom. "VARCHAR(255) NULL";
+        self::tambahColomn("ALTER TABLE nilai_awals ADD ". $namaKolom ." INTEGER(10)");
 
         return redirect('/admin/datakriteria')->with ('status', 'Data telah berhasil ditambahkan');
     }
@@ -230,7 +232,7 @@ class kriteriaController extends Controller
         $kolomBaru=str_replace(' ', '_', $request->Kriteria);
         // ALTER TABLE table_name RENAME COLUMN old_col_name TO new_col_name;
         // ALTER TABLE tableName CHANGE oldcolname newcolname datatype(length);
-        self::ubahKolom("ALTER TABLE nilai_awals CHANGE ". $kolomLama ." ".$kolomBaru. " INTEGER(5)");
+        self::ubahKolom("ALTER TABLE nilai_awals CHANGE ". $kolomLama ." ".$kolomBaru. " INTEGER(10)");
 
         return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil diubah');
     }
