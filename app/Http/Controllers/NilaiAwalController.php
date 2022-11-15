@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataKriteria;
 use App\Models\NilaiAwal;
 use App\Models\NilaiVektorS;
+use App\Models\NilaiVektorV;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Schema;
@@ -65,6 +66,10 @@ class NilaiAwalController extends Controller
     
     public function store(Request $request)
     {   
+        // $Wartawan1 = NilaiVektorS::where('id_calon', $request->id_calon)->select('jumlah')->first();
+        // $WartawanSemua = NilaiVektorS::get();
+        // dd($Wartawan1->jumlah);
+
         // $nama_barang = produk::where('id_produk',$request->id_produk)->select('nama_produk')->first();
         $namaKolom = Schema::getColumnListing('nilai_awals');
         $nama=$namaKolom[6];
@@ -79,24 +84,38 @@ class NilaiAwalController extends Controller
             }
 
         // input hasil perhitungan untuk mendapatkan nilai vektor s ke tabel vektor s
-        // 1. mengambil semua nilai yang ada di data kriteria
-        // $dataKriteria = DataKriteria::get();
-        // 2. mengambil nilai nilai yang ada di nilai awals
-        $dataNilaiAwal = NilaiAwal::where('id_calon', $request->id_calon)->first();
-        // 3. Mengalikan column yang sama untuk mendapatkan nilai vektor s
+        $total = 0;
         for ($i = 6; $i < count($namaKolom); $i++) { 
             $params = str_replace('_', ' ', $namaKolom[$i]);
             $BobotKriteria = DataKriteria::where('Kriteria', $params)->select('Perbaikan_Bobot')->first();
             $NilaiAwal = NilaiAwal::where('id_calon', $request->id_calon)->select($namaKolom[$i])->first();
             $namaKolom2 = $namaKolom[$i];
             $hasil = $NilaiAwal->$namaKolom2 ** $BobotKriteria->Perbaikan_Bobot;
-            
+            $total += $hasil;
             // input data ke nilai vektor s
             NilaiVektorS::where('id_calon', $request->id_calon)
                 ->update([
-                    $namaKolom2 => $hasil
+                    $namaKolom2 => $hasil,
+                    'jumlah' => $total,
                 ]);
                 }
+
+        // input data ke vektor V
+        $WartawanSemua = NilaiVektorS::get();
+        $totalNilai = 0;
+        $idCalon = [];
+        for ($i=0; $i < count($WartawanSemua); $i++) { 
+            $totalNilai += $WartawanSemua[$i]['jumlah'];
+            array_push($idCalon, $WartawanSemua[$i]['id_calon']);
+        }
+        for ($i=0; $i < count($idCalon) ; $i++) { 
+            $Wartawan1 = NilaiVektorS::where('id_calon', $idCalon[$i])->select('jumlah')->first();
+            NilaiVektorV::where('id_calon', $idCalon[$i])
+                    ->update([
+                        'hasil' => $Wartawan1->jumlah/$totalNilai,
+                    ]);
+        }
+                
 
         return redirect('/admin/nilaiawal')->with ('status', 'Nilai telah berhasil di inputkan');
     }

@@ -2,50 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NilaiAwal;
-use App\Models\NilaiVektorS;
 use App\Models\NilaiVektorV;
 use Illuminate\Http\Request;
-use App\Models\Wartawan;
 
-class wartawanController extends Controller
+class VektorVController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function verifikasi(Request $request){
-        wartawan::where('id_wartawan', $request->wartawan)
-                    ->update([
-                        'verifikasi'=>'Sudah',
-                    ]);
-        $data = wartawan::where('id_wartawan', $request->wartawan)->get();
-        // dd($data[0]['Nama']);
-        NilaiAwal::create([
-            'id_calon' => $data[0]['id_wartawan'],
-            'nama_calon' => $data[0]['Nama'],
-            'periode' => $data[0]['Periode'],
-        ]);
-        NilaiVektorS::create([
-            'id_calon' => $data[0]['id_wartawan'],
-            'nama_calon' => $data[0]['Nama'],
-            'jumlah' => 0,
-        ]);
-        NilaiVektorV::create([
-            'id_calon' => $data[0]['id_wartawan'],
-            'nama_calon' => $data[0]['Nama'],
-            'hasil' => 0,
-        ]);
-        return redirect('/admin/wartawan')->with ('status', 'Data telah berhasil diverifkasi');
-    }
-    
     public function index()
     {
-        $data=Wartawan::where('Melamar', 'sudah')->get();
-        return view ('/Data_Wartawan/DataWartawan', [
-            'data'=>$data,
+        return view ('/Data_Vektor_V/DataVektorV', [
+            'datas'=>NilaiVektorV::paginate(5),
         ]);
     }
 

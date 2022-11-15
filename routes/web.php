@@ -66,8 +66,11 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::get('/admin/nilaiawal/{nilaiawal}/edit', 'NilaiAwalController@edit');
     Route::patch('/admin/nilaiawal/{nilaiawal}', 'NilaiAwalController@update');
 
-    // input nilai vektor s
+    // view nilai vektor s
     Route::get('/admin/vektors', 'VektorSController@index');
+
+    // view nilai vektor v
+    Route::get('/admin/vektorv', 'VektorVController@index');
 
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');

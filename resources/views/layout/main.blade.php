@@ -64,7 +64,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><a href="/admin/nilaiawal">Nilai Awal</a></li>
                             <li><a href="/admin/vektors">Nilai Vektor S</a></li>
-                            <li><a href="/vektorv">Nilai Vektor V</a></li>
+                            <li><a href="/admin/vektorv">Nilai Vektor V</a></li>
                         </ul>
                     </li>
                     {{-- <li>

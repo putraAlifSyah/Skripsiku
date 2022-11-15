@@ -128,7 +128,7 @@ class kriteriaController extends Controller
             'Perbaikan_Bobot' => 'required',
         ]);
 
-        // melakukan perulangan untuk mengubah masing masing data bobot record sebelumnya, dan memanggul fungsi UbahBobot
+        // melakukan perulangan untuk mengubah masing masing data bobot record sebelumnya, dan memanggil fungsi UbahBobot
         for ($i=1; $i <= $panjangArray; $i++) { 
             $nilaiBobotAkhir=$bobotSebelumnya[$i-1]/$jmlBobot;
             if (count($kode)<1) {
@@ -214,7 +214,7 @@ class kriteriaController extends Controller
         $jmlBobot-=$request->Bobot;
         $jmlBobot+=$request->Bobot;
         
-        // var_dump($panjangArray);die;
+
         for ($i=1; $i <= $panjangArray; $i++) { 
             $nilaiBobotAkhir=$bobotSebelumnya[$i-1]/$jmlBobot;
             self::UbahBobot2($kode[$i-1], $jmlBobot, $nilaiBobotAkhir);
