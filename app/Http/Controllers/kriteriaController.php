@@ -150,7 +150,6 @@ class kriteriaController extends Controller
 
         // menambah kolom baru di tabel nilai
         $namaKolom=str_replace(' ', '_', $request->Kriteria);
-        $query = "ALTER TABLE nilai_awals ADD ".$namaKolom. "VARCHAR(255) NULL";
         self::tambahColomn("ALTER TABLE nilai_awals ADD ". $namaKolom ." INTEGER(10)");
 
         return redirect('/admin/datakriteria')->with ('status', 'Data telah berhasil ditambahkan');

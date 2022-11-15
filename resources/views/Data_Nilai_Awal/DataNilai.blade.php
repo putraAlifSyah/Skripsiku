@@ -25,6 +25,8 @@
 @endsection
 
 @section('konten')
+
+{{-- nilai awal --}}
 <div class="container">
     <div class="card">
     <div class="card-body">
@@ -53,7 +55,7 @@
     </thead>
     <tbody class="table table-hover">
    
-    @foreach($data as $data)
+    @foreach($datas as $data)
         <tr class="text=center">
             <td>{{$loop->iteration}}</td>
             <td>{{$data->nama_calon}}</td>
@@ -76,13 +78,25 @@
         </tr>
     </div>
     @endforeach
+</tbody>
 
-    </tbody>
-    </table>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {{ $datas->links() }}
+    </ul>
+  </nav>
     </div>
     </div>
     </div>
 <!-- </div> -->
+{{-- akhir --}}
+
+
+{{-- Nilai Vektor s --}}
+
+{{-- Akhir --}}
+
 @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}

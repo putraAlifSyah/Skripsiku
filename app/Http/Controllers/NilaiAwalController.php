@@ -17,9 +17,9 @@ class NilaiAwalController extends Controller
     public function index()
     {
         $namaKolom = Schema::getColumnListing('nilai_awals');
-        $data=NilaiAwal::all();
+        // $data=NilaiAwal::paginate(7);
         return view ('/Data_Nilai_Awal/DataNilai', [
-            'data'=>$data,
+            'datas'=>NilaiAwal::paginate(5),
             'namaKolom'=> $namaKolom,
         ]);
     }
