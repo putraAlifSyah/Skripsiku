@@ -40,12 +40,9 @@
 
         @if (count($namaKolom) > 6)
             @for ($i = 6; $i < count($namaKolom); $i++)
-            @php
-                $kolom=$namaKolom[$i];
-            @endphp
                 <div class="form-group">
                     <label for="{{ $namaKolom[$i] }}">{{ str_replace('_', ' ', $namaKolom[$i]) }}</label>
-                    <input type="number" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="{{ $data->$kolom }}">
+                    <input type="number" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="">
                 </div>
             @endfor
         @endif

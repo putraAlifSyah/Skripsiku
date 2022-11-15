@@ -19,13 +19,12 @@ Route::get('/', 'pelamarController@index');
 // bisa diakses oleh user
 // biodata user
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
-    // data kriteria
+    // untuk crud biodata user
     Route::get('/biodata', 'BiodataController@index');
     Route::get('/periodeDaftar/{periode}/daftar', 'BiodataController@create');
     Route::post('/IsiBiodata', 'BiodataController@store');
     Route::get('/editBiodata/{user}', 'BiodataController@edit');
     Route::patch('/simpanEdit', 'BiodataController@update');
-    // Route::get('/periodeDaftar/{periode}/daftar', 'PeriodeController@Daftar');
 });
 // hanya boleh diakses admin
 
@@ -66,6 +65,9 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::post('/admin/nilaiawal/input', 'NilaiAwalController@store');
     Route::get('/admin/nilaiawal/{nilaiawal}/edit', 'NilaiAwalController@edit');
     Route::patch('/admin/nilaiawal/{nilaiawal}', 'NilaiAwalController@update');
+
+    // input nilai vektor s
+    Route::get('/admin/vektors', 'VektorSController@index');
 
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');

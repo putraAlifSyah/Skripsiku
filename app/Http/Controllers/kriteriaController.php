@@ -20,14 +20,7 @@ class kriteriaController extends Controller
         if ($connection->connect_error) {
             die("Connection failed: " . $connection->connect_error);
           }
-          $added= mysqli_query($connection, $query);
-
-          if($added !== FALSE)
-          {
-             echo("The column has been added.");
-          }else{
-             echo("The column has not been added.");
-          }
+          mysqli_query($connection, $query);
     }
     public function hapusKolom($query){
         $connection= mysqli_connect('127.0.0.1', 'root', '', 'wartawan_spk');
@@ -150,7 +143,11 @@ class kriteriaController extends Controller
 
         // menambah kolom baru di tabel nilai
         $namaKolom=str_replace(' ', '_', $request->Kriteria);
-        self::tambahColomn("ALTER TABLE nilai_awals ADD ". $namaKolom ." INTEGER(10)");
+        // tambah kolom di tabel nilai_awal
+        self::tambahColomn("ALTER TABLE nilai_awals ADD ". $namaKolom ." float(1) DEFAULT(0)");
+
+        // tambah kolom di tabel vektor s
+        self::tambahColomn("ALTER TABLE nilai_vektor_s ADD ". $namaKolom ." float(1) DEFAULT(0)");
 
         return redirect('/admin/datakriteria')->with ('status', 'Data telah berhasil ditambahkan');
     }
@@ -187,9 +184,6 @@ class kriteriaController extends Controller
     // Request $request, $id
     public function update(Request $request, Datakriteria $datakriteria)
     {
-
-        // dd(str_replace(' ', '_', $request->Kriteria_Lama));
-        
         // cek duplikat
         $duplikat = DataKriteria::where('Kode',$request->Kode)->first();
         if($duplikat)
@@ -226,12 +220,13 @@ class kriteriaController extends Controller
             self::UbahBobot2($kode[$i-1], $jmlBobot, $nilaiBobotAkhir);
         }
 
-        // ubah nama kolom
+        // ubah nama kolom tabel nilai awal
         $kolomLama=str_replace(' ', '_', $request->Kriteria_Lama);
         $kolomBaru=str_replace(' ', '_', $request->Kriteria);
-        // ALTER TABLE table_name RENAME COLUMN old_col_name TO new_col_name;
-        // ALTER TABLE tableName CHANGE oldcolname newcolname datatype(length);
-        self::ubahKolom("ALTER TABLE nilai_awals CHANGE ". $kolomLama ." ".$kolomBaru. " INTEGER(10)");
+        self::ubahKolom("ALTER TABLE nilai_awals CHANGE ". $kolomLama ." ".$kolomBaru. " INTEGER(10) DEFAULT(0)");
+
+        // ubah nama kolom tabel nilai vektor s
+        self::ubahKolom("ALTER TABLE nilai_vektor_s CHANGE ". $kolomLama ." ".$kolomBaru. " float(1) DEFAULT(0)");
 
         return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil diubah');
     }
@@ -253,6 +248,8 @@ class kriteriaController extends Controller
         $namaKolom=str_replace(' ', '_', $data[0]['Kriteria']);
         // dd($namaKolom);
         self::hapusKolom("ALTER TABLE `nilai_awals` DROP `$namaKolom`");
+        // menghapus kolom kriteria di tabel nilai vektor s
+        self::hapusKolom("ALTER TABLE `nilai_vektor_s` DROP `$namaKolom`");
 
         DataKriteria::destroy($id);
         $jmlBobot=0;

@@ -63,8 +63,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa-solid fa-arrow-down-9-1"></i>Nilai</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><a href="/admin/nilaiawal">Nilai Awal</a></li>
-                            <li><a href="/datatalent">Nilai Vektor S</a></li>
-                            <li><a href="/datatayangan">Nilai Vektor V</a></li>
+                            <li><a href="/admin/vektors">Nilai Vektor S</a></li>
+                            <li><a href="/vektorv">Nilai Vektor V</a></li>
                         </ul>
                     </li>
                     {{-- <li>
