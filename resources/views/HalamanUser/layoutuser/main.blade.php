@@ -28,9 +28,7 @@
               </li>
             </ul>
             <span class="navbar-text">
-              <a class="nav-link" href="/login">Login ||  </a>
-            </span>
-            <span class="navbar-text">
+              @if (Auth::user())
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -38,6 +36,11 @@
                     {{ __(' Log Out') }}
                 </a>
             </form>
+            @else
+              <a class="nav-link" href="/login">Login</a>
+            @endif
+            </span>
+            <span class="navbar-text">
             </span>
           </div>
         </div>

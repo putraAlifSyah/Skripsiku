@@ -39,8 +39,9 @@
         <tr>
             <th>No</th>
             <th>Periode Pendaftaran</th>
+            <th>Tanggal Mulai Pendaftaran</th>
+            <th>Tanggal Akhir Pendaftaran</th>
             <th>Tanggal Mulai Ujian</th>
-            <th>Tanggal Akhir Ujian</th>
             <th>Keterangan</th>
             <th>Aksi</th>
         </tr>
@@ -50,9 +51,10 @@
     @foreach($data as $data)
         <tr class="text=center">
             <td>{{$loop->iteration}}</td>
-            <td>{{$data->Periode_Penerimaan}}</td>
+            <td>{{$data->Periode_Penerimaan}}/{{$data->Periode_Penerimaan+1}}</td>
+            <td>{{$data->Tanggal_Mulai_Pendaftaran}}</td>
+            <td>{{$data->Tanggal_Akhir_Pendaftaran}}</td>
             <td>{{$data->Tanggal_Mulai_Ujian}}</td>
-            <td>{{$data->Tanggal_Akhir_Ujian}}</td>
             <td>{{$data->Keterangan}}</td>
                 <td>
                 <div class="card-body">

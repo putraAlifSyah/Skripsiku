@@ -35,18 +35,23 @@
    <div class="col-md-4 offset-md-4">
     
         <div class="form-group">
-            <label for="Periode_Penerimaan">Periode_Penerimaan/Simbol</label>
+            <label for="Periode_Penerimaan">Periode Penerimaan/Simbol</label>
             <input type="text" class="form-control" id="Periode_Penerimaan" name="Periode_Penerimaan" value="{{ $periode->Periode_Penerimaan }}">
         </div>
 
         <div class="form-group">
-            <label for="Tanggal_Mulai_Ujian">Tanggal_Mulai_Ujian</label>
-            <input type="date" class="form-control" id="Tanggal_Mulai_Ujian" name="Tanggal_Mulai_Ujian" value="{{ $periode->Tanggal_Mulai_Ujian }}">
+            <label for="Tanggal_Mulai_Pendaftaran">Tanggal Mulai Pendaftaran</label>
+            <input type="date" class="form-control" id="Tanggal_Mulai_Pendaftaran" name="Tanggal_Mulai_Pendaftaran" value="{{ $periode->Tanggal_Mulai_Pendaftaran }}">
         </div>
 
         <div class="form-group">
-            <label for="Tanggal_Akhir_Ujian">Tanggal_Akhir_Ujian</label>
-            <input type="date" class="form-control" id="Tanggal_Akhir_Ujian" name="Tanggal_Akhir_Ujian" value="{{ $periode->Tanggal_Akhir_Ujian }}">
+            <label for="Tanggal_Akhir_Pendaftaran">Tanggal Akhir Pendaftaran</label>
+            <input type="date" class="form-control" id="Tanggal_Akhir_Pendaftaran" name="Tanggal_Akhir_Pendaftaran" value="{{ $periode->Tanggal_Akhir_Pendaftaran }}">
+        </div>
+
+        <div class="form-group">
+            <label for="Tanggal_Mulai_Ujian">Tanggal Ujian</label>
+            <input type="date" class="form-control" id="Tanggal_Mulai_Ujian" name="Tanggal_Mulai_Ujian" value="{{ $periode->Tanggal_Mulai_Ujian }}">
         </div>
 
         <div class="form-group">

@@ -3,6 +3,7 @@
 @section('title', 'Home')
 
 @section('konten')
+
     {{-- konten --}}
     {{-- {{ dd() }} --}}
     {{-- <embed src="{{ asset('storage/'. $data[0]['Foto'])}}" width="800px" height="2100px" /> --}}
@@ -19,11 +20,35 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Featured
+                        Pemberitahuan
                     </div>
                     <div class="card-body">
-                        <p class="text-sm-center"><b><u>Selamat datang di website pendaftaran koran upeks</u></b></p>
-                        <p class="card-text">Silahkan membuat akun terlebih dahulu</p>
+                        <p class="text-sm"><b><u>Selamat datang di website pendaftaran koran upeks</u></b></p>
+                        @if (!Auth::check())
+                            <p class="card-text">Silahkan membuat akun terlebih dahulu dengan menekan tombol daftar di bawah</p>
+                        @endif
+
+                        @if (Auth::check())
+                            @if ($dataWartawan)
+                                <p>Anda telah mendaftarkan diri pada periode: {{ $dataWartawan->Periode }}. <br>Silahkan datang ke kantor untuk mengikuti seleksi sesuai jadwal yang telah ditentukan
+                                <br>
+                                Jadwal Ujian: {{ $tanggal->Tanggal_Mulai_Ujian}}
+                                <br>
+                                Keterangan: {{ $tanggal->Keterangan }}
+                                </p>
+
+                                {{-- <div class="col-md-18">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-text">Terdapat kesalahan dalam mengisi Biodata? atau ingin mengganti periode? silahkan klik tombol dibawah</p>
+                                            <a  class='btn btn-success' href="">Edit Data</a>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                            @else
+                                <p>Anda belum mendaftarkan diri untuk mengikuti proses seleksi, silahkan mendaftar terlebih dahulu dengan memilih periode yang ingin diikuti dibawah ini</p>
+                            @endif
+                        @endif
                     </div>
                 </div>
             </div>
@@ -31,7 +56,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Featured
+                        Pemberitahuan
                     </div>
                     <div class="card-body">
                         {{-- <p>{{ Auth::user()->name }}</p><br> --}}
@@ -42,113 +67,57 @@
                 </div>
             </div>
         </div>
-        <h3>Periode Terbuka</h3>
-        @if (count($periode) > 0)
-        <div class="row">
-          @foreach ($periode as $data)
-            <div class="col-md-4 my-3">
-                <div class="card">
 
-                    <div class="card-body">
-                      <h5 class="card-title">Terbuka</h5>
-                      <p class="card-text">
-                        Periode Pendaftaran: {{ $data->Periode_Penerimaan }} <br>
-                          Tanggal Pendaftaran: {{ $data->Tanggal_Mulai_Pendaftaran }} s/d {{ $data->Tanggal_Akhir_Pendaftaran }} <br>
-                          Tanggal Ujian : {{ $data->Tanggal_Mulai_Ujian }}
-                        </p>
-                        <a href="#" class="btn btn-primary">Daftar</a>
+        @if (!Auth::check() || $ada == false)
+            <h3>Periode Terbuka</h3>
+            @if (count($periode) > 0)
+            <div class="row">
+            @foreach ($periode as $data)
+                <div class="col-md-4 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">Terbuka</h5>
+                        <p class="card-text">
+                            Periode Pendaftaran: {{ $data->Periode_Penerimaan }} <br>
+                            Tanggal Pendaftaran: {{ $data->Tanggal_Mulai_Pendaftaran }} s/d {{ $data->Tanggal_Akhir_Pendaftaran }} <br>
+                            Tanggal Ujian : {{ $data->Tanggal_Mulai_Ujian }}
+                            </p>
+                            <a href="/periodeDaftar/{{ $data->id }}/daftar" class="btn btn-primary">Daftar</a>
+                            {{-- <a href="/periodeDaftar/{{ $data->id }}/daftar" class="btn btn-primary">Daftar</a> --}}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+            </div>
+            @else
+            <div class="row">
+                <div class="col-md-4 my-3">
+                    <div class="card">
+
+                        <div class="card-body">
+                        <p class="card-text">Tidak ada</p>
+                        </div>
                     </div>
                 </div>
             </div>
-          @endforeach
-      </div>
-        </div>
-        @else
-        <div class="row">
-            <div class="col-md-4 my-3">
-                <div class="card">
+            </div>
+            @endif
 
-                    <div class="card-body">
-                      <p class="card-text">Tidak ada</p>
+        @endif
+
+        @if (Auth::check())
+            @if ($dataWartawan)
+                <div class="col-md-6 mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">Terdapat kesalahan dalam mengisi Biodata? atau ingin mengganti periode? silahkan klik tombol dibawah</p>
+                                <a  class='btn btn-success' href="/editBiodata/{{ Auth::user()->id }}">Edit Data</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-          </div>
+            @endif
         @endif
 
-        {{-- 
-<div class="row mt-3" >
-    <div class="col-md-6" style="margin-top: -5rem">
-      <div class="card-body">
-        <p class="text-sm-start"><b><u>Periode yang terbuka:</u></b></p>
-        @if (count($periode) > 0)          
-        @foreach ($periode as $data)
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Terbuka</h5>
-            <p class="card-text">
-              Periode Pendaftaran: {{ $data->Periode_Penerimaan }} <br>
-                Tanggal Pendaftaran: {{ $data->Tanggal_Mulai_Pendaftaran }} s/d {{ $data->Tanggal_Akhir_Pendaftaran }} <br>
-                Tanggal Ujian : {{ $data->Tanggal_Mulai_Ujian }}
-              </p>
-              <a href="#" class="btn btn-primary">Daftar</a>
-            </div>
-          </div>
-          <br>
-          @endforeach
-        @else
-        <p class="card-text">Tidak ada</p>
-        @endif
-      </div>
-    </div>
-</div>
-</div> --}}
-        {{-- <div class="container text-center">
-    <div class="card mt-3" style="width: 60rem;">
-      <div class="card-body">
-        <p class="text-sm-center"><b><u>Selamat datang di website pendaftaran koran upeks</u></b></p>
-        <p class="card-text">Silahkan membuat akun terlebih dahulu</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <div class="card mt-3" style="width: 30rem;">
-      <div class="card-body">
-        <p class="text-sm-start"><b><u>Tatacara Mendaftar</u></b></p>
-        <p>{{ Auth::user()->name }}</p><br>
-        {{-- <p class="card-text">Pertama silahkan membuat akun. kemudian login menggunakan akun yang telah dibuat. berikutnya, lengkapi biodata untuk melakukan pendaftaran. terakhir tekan tombol "daftar" yang tersedia sesuai dengan periode yang diikuti</p>
-      </div>
-    </div>
-    </div>
-    </div> --}}
-
-        {{-- <div class="container">
-    <div class="card mt-3" style="width: 30rem;">
-      <div class="card-body">
-        <p class="text-sm-start"><b><u>Periode yang terbuka:</u></b></p>
-        @if (count($periode) > 0)          
-        @foreach ($periode as $data)
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Terbuka</h5>
-            <p class="card-text">
-              Periode Pendaftaran: {{ $data->Periode_Penerimaan }} <br>
-                Tanggal Pendaftaran: {{ $data->Tanggal_Mulai_Pendaftaran }} s/d {{ $data->Tanggal_Akhir_Pendaftaran }} <br>
-                Tanggal Ujian : {{ $data->Tanggal_Mulai_Ujian }}
-              </p>
-              <a href="#" class="btn btn-primary">Daftar</a>
-            </div>
-          </div>
-          <br>
-          @endforeach
-        @else
-        <p class="card-text">Tidak ada</p>
-        @endif
-      </div>
-    </div>
-    </div>
-    </div>
-</div> --}}
+        
     @endsection

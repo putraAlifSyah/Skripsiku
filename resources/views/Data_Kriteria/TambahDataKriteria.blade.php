@@ -33,8 +33,9 @@
    <div class="col-md-4 offset-md-4">
 
 
-        <div class="form-group">
-            <label for="Kode">Kode/Simbol</label>
+       <input type="hidden" class="form-control" id="Kode" name="Kode" value="{{ rand(pow(10, 2-1), pow(10, 2)-1); }}">
+        {{-- <div class="form-group"> --}}
+            {{-- <label for="Kode">Kode/Simbol</label>
             <select name="Kode" class="form-control" id="Kode">
                 <option value="">-- pilih --</option>
                 <option value="C1">C1</option>
@@ -48,8 +49,8 @@
                 <div class="alert alert-danger">
                     {{ session('duplikat') }}
                 </div>
-            @endif 
-        </div>
+            @endif  --}}
+        {{-- </div> --}}
 
         <div class="form-group">
             <label for="Kriteria">Kriteria</label>

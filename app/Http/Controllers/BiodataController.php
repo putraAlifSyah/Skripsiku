@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Periode;
+use App\Models\User;
 use App\Models\Wartawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BiodataController extends Controller
 {
@@ -22,9 +25,13 @@ class BiodataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Periode $periode)
     {
-        //
+        $data = Periode::where('id', $periode->id)->first();
+        return view ('HalamanUser/Biodata/biodata', [
+            'periode'=>$periode,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -40,11 +47,11 @@ class BiodataController extends Controller
             'Alamat' => 'required',
             'Handphone' => 'required',
             'Pendidikan' => 'required',
-            'KTP' => 'required|file|mimes:pdf,jpg|max:100000',
-            'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg|max:100000',
+            'KTP' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Foto' => 'required|file|image|max:100000',
-            'CV' => 'required|file|mimes:pdf,jpg|max:100000',
-            'Surat_Lamaran' => 'required|file|mimes:pdf,jpg|max:100000',
+            'CV' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'Surat_Lamaran' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Verifikasi' => 'required',
             'Melamar' => 'required',
             'Periode' => 'required',
@@ -67,9 +74,9 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        
     }
 
     /**
@@ -78,9 +85,14 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $data = Wartawan::where('id_user', $user->id)->first();
+        $periode = Periode::all();
+        return view ('HalamanUser/Biodata/Editbiodata', [
+            'periode'=>$periode,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -90,9 +102,49 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Wartawan $wartawan)
     {
-        //
+        // dd($request->old_KTP);
+        $rules = [
+            'Nama' => 'required',
+            'Alamat' => 'required',
+            'Handphone' => 'required',
+            'Pendidikan' => 'required',
+            'KTP' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'Foto' => 'required|file|image|max:100000',
+            'CV' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'Surat_Lamaran' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'Verifikasi' => 'required',
+            'Melamar' => 'required',
+            'Periode' => 'required',
+            'id_user' => 'required',
+        ];
+
+        // memvalidasi data
+        $validatedData = $request->validate($rules);
+
+        
+        // menyimpan data file baru
+        $validatedData['Ijazah_Terakhir'] = $request->file('Ijazah_Terakhir')->store('WartawanData');
+        $validatedData['Foto'] = $request->file('Foto')->store('WartawanData');
+        $validatedData['CV'] = $request->file('CV')->store('WartawanData');
+        $validatedData['Surat_Lamaran'] = $request->file('Surat_Lamaran')->store('WartawanData');
+        $validatedData['KTP'] = $request->file('KTP')->store('WartawanData');
+
+
+
+        Wartawan::where('id_user', $request->id_user)
+                    ->update($validatedData);
+
+        // menghapus file lama
+        Storage::delete($request->old_KTP);
+        Storage::delete($request->old_ijazah);
+        Storage::delete($request->old_cv);
+        Storage::delete($request->old_suratLamaran);
+        Storage::delete($request->old_foto);
+
+        return redirect('/')->with('status', 'Data telah berhasil diubah');
     }
 
     /**

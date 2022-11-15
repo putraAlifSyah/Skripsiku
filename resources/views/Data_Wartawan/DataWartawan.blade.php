@@ -28,15 +28,19 @@
 @endsection
 
 @section('konten')
-<div class="container">
+{{-- <div class="container"> --}}
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
         <strong>Data Wartawan</strong>
     </div>
-    {{-- <div class="pull-right">
-        <a href="/admin/wartawan/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
-    </div> --}}
+    <div class="pull-right">
+        <select name="Periode" class="form-control mb-2" id="Periode">
+            <option value="">Pilih Periode</option>
+                <option value="">2021</option>
+                <option value="">2022</option>
+        </select>
+    </div>
     <table class="table table-striped">
     <thead class="table-dark">
         <tr>
@@ -65,10 +69,10 @@
             <td>{{$data->Handphone}}</td>
             <td>{{$data->Pendidikan}}</td>
             <td> <img src="{{ asset('storage/'.$data->Foto) }}" alt="" style="width: 200px"> </td>
-            <td><a href="{{ asset('storage/'.$data->Ijazah_Terakhir) }}">Ijazah</a></td>
-            <td><a href="{{ asset('storage/'.$data->KTP) }}">KTP</a></td>
-            <td><a href="{{ asset('storage/'.$data->CV) }}">CV</a></td>
-            <td><a href="{{ asset('storage/'.$data->Surat_Lamaran) }}">Surat Lamaran</a></td>
+            <td><a href="{{ asset('storage/'.$data->Ijazah_Terakhir)}}" class="btn btn-success rounded"><i class="fa-solid fa-certificate"></i></a></td>
+            <td><a href="{{ asset('storage/'.$data->KTP)}}" class="btn btn-success rounded"><i class="fa-solid fa-id-card"></i></a></td>
+            <td><a href="{{ asset('storage/'.$data->CV)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope-open-text"></i></a></td>
+            <td><a href="{{ asset('storage/'.$data->Surat_Lamaran)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope"></i></a></td>
             <td>{{$data->Verifikasi}}</td>
             <td>{{$data->Periode}}/{{ $data->Periode+1 }}</td>
                 <td>

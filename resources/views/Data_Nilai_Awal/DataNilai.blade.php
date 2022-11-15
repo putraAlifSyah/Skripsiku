@@ -15,7 +15,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                         <i>Data Periode</i>
+                         <i>Data Nilai Awal</i>
                         </ol>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
-        <strong>Data Periode</strong>
+        <strong>Data Data Nilai Awal</strong>
     </div>
     <div class="pull-right">
         <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>

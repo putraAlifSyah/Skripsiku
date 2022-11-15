@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Periode;
 use App\Models\Wartawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class pelamarController extends Controller
 {
@@ -17,10 +18,27 @@ class pelamarController extends Controller
     {
         $periode=Periode::all();
         $data = Wartawan::all();
-        // dd($periode);
+        if (Auth::check() && Wartawan::where('id_user', Auth::user()->id )->first())
+        {
+            $dataWartawan = Wartawan::where('id_user', Auth::user()->id )->first();
+            $periodePendaftar = $dataWartawan->Periode;
+            $ada=true;
+            $tanggal = Periode::where('Periode_Penerimaan', $periodePendaftar)->first();
+            return view ('/HalamanUser/index', [
+                'periode'=>$periode,
+                'data' => $data,
+                'dataWartawan' => $dataWartawan,
+                'ada' => $ada,
+                'tanggal' => $tanggal
+            ]);
+        }
+        $dataWartawan = false;
+        $ada = false;
         return view ('/HalamanUser/index', [
             'periode'=>$periode,
-            'data' => $data
+            'data' => $data,
+            'ada' => $ada,
+            'dataWartawan' => $dataWartawan
         ]);
     }
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Periode;
+use App\Models\User;
+use App\Models\Wartawan;
+use Illuminate\Support\Facades\Auth;
+
 // use App\Http\Requests\cekPeriode;
 
 class PeriodeController extends Controller
@@ -13,6 +17,19 @@ class PeriodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function Daftar(Periode $periode){
+        // dd($periode);
+        $id_user = Auth::user()->id;
+        // dd($id_user);
+        Wartawan::where('id_user', $id_user )
+                    ->update([
+                        'Periode'=>$periode->Periode_Penerimaan,
+                        'Melamar'=>"Sudah",
+                    ]);
+        return redirect('/')->with('status', 'Anda telah berhasil mendaftar');
+    }
+
     public function index()
     {
         $data=Periode::all();
@@ -42,8 +59,9 @@ class PeriodeController extends Controller
        
         $validated = request()->validate([
             'Periode_Penerimaan' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+            'Tanggal_Mulai_Pendaftaran' => 'required',
+            'Tanggal_Akhir_Pendaftaran' => 'required',
             'Tanggal_Mulai_Ujian' => 'required',
-            'Tanggal_Akhir_Ujian' => 'required',
             'Keterangan' => 'required',
         ],
         [
@@ -106,8 +124,9 @@ class PeriodeController extends Controller
         Periode::where('id', $periode->id)
                     ->update([
                         'Periode_Penerimaan'=>$request->Periode_Penerimaan,
+                        'Tanggal_Mulai_Pendaftaran'=>$request->Tanggal_Mulai_Pendaftaran,
+                        'Tanggal_Akhir_Pendaftaran'=>$request->Tanggal_Akhir_Pendaftaran,
                         'Tanggal_Mulai_Ujian'=>$request->Tanggal_Mulai_Ujian,
-                        'Tanggal_Akhir_Ujian'=>$request->Tanggal_Akhir_Ujian,
                         'Keterangan'=>$request->Keterangan,
                     ]);
         return redirect('/admin/periode')->with('status', 'Data telah berhasil diubah');

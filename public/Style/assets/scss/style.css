@@ -1323,7 +1323,7 @@ header .form-inline {
     display: none; }
 
 #menuToggle2 {
-  padding-left: 25px; }
+  padding-left: 1000px; }
 
 #language-select {
   color: #f1f2f7;
@@ -2117,10 +2117,11 @@ header .form-inline {
 
   .badges button {
     margin: 2px 0; } }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   aside.left-panel {
     padding: 0 20px;
-    width: 200px; }
+    width: 350px; 
+  }
 
   .navbar .navbar-nav li > a .menu-icon {
     width: 30px; }

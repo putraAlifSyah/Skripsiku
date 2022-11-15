@@ -6,12 +6,22 @@
 <div class="container mt-3">
     <h3>Isi biodata</h3>
     {{-- periodeDaftar/1/daftar --}}
-    <form method="post" action="/IsiBiodata" enctype="multipart/form-data">
+    <form method="post" action="/simpanEdit" enctype="multipart/form-data">
+        @method('PATCH')
         @csrf
+
+        {{-- menyimpan nama nama file lama --}}
+        <input type="hidden" class="form-control" id="old_KTP" name="old_KTP" value="{{ $data->KTP }}">
+        <input type="hidden" class="form-control" id="old_ijazah" name="old_ijazah" value="{{ $data->Ijazah_Terakhir }}">
+        <input type="hidden" class="form-control" id="old_cv" name="old_cv" value="{{ $data->CV }}">
+        <input type="hidden" class="form-control" id="old_suratLamaran" name="old_suratLamaran" value="{{ $data->Surat_Lamaran }}">
+        <input type="hidden" class="form-control" id="old_foto" name="old_foto" value="{{ $data->Foto }}">
+        {{-- akhir --}}
+
         <div class="form-group row">
             <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Nama" name="Nama">
+                <input type="text" class="form-control" id="Nama" name="Nama" value="{{ $data->Nama }}">
                 @if($errors->has('Nama'))
                 <div class="alert alert-danger" role="alert">
                     {{ $errors->first('Nama') }}
@@ -22,7 +32,7 @@
         <div class="form-group row mt-3">
             <label for="Alamat" class="col-lg-2 col-form-label">Alamat</label>
             <div class="col-sm-10">
-                <textarea type="text" class="form-control" id="Alamat" name="Alamat"></textarea>
+                <textarea type="text" class="form-control" id="Alamat" name="Alamat">{{ $data->Alamat }}</textarea>
                 @if($errors->has('Alamat'))
                 <div class="alert alert-danger" role="alert">
                     {{ $errors->first('Alamat') }}
@@ -33,7 +43,7 @@
         <div class="form-group row mt-3">
             <label for="Handphone" class="col-sm-2 col-form-label">Nomor Handphone</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Handphone" name="Handphone">
+                <input type="text" class="form-control" id="Handphone" name="Handphone" value="{{ $data->Handphone }}">
                 @if($errors->has('Handphone'))
                 <div class="alert alert-danger" role="alert">
                     {{ $errors->first('Handphone') }}
@@ -44,7 +54,7 @@
         <div class="form-group row mt-3">
             <label for="Pendidikan" class="col-sm-2 col-form-label">Pendidikan</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Pendidikan" name="Pendidikan">
+                <input type="text" class="form-control" id="Pendidikan" name="Pendidikan" value="{{ $data->Pendidikan }}">
                 @if($errors->has('Pendidikan'))
                 <div class="alert alert-danger" role="alert">
                     {{ $errors->first('Pendidikan') }}
@@ -52,6 +62,19 @@
                 @endif
             </div>
         </div>
+
+        <div class="form-group row mt-3">
+            <label for="Periode" class="col-sm-2 col-form-label">Periode</label>
+            <div class="col-sm-10">
+                <select name="Periode" class="form-control" id="Periode">
+                    <option value="{{ $data->Periode }}">{{ $data->Periode }}</option>
+                    @foreach($periode as $data)
+                        <option value="{{ $data->Periode_Penerimaan }}">{{ $data->Periode_Penerimaan }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         <div class="form-group row mt-3">
             <label for="KTP" class="col-sm-2 col-form-label">KTP</label>
             <div class="col-sm-10">
@@ -109,9 +132,12 @@
                 @endif
             </div>
         </div>
+
+        
+
         <input type="hidden" class="form-control" id="Verifikasi" name="Verifikasi" value="Belum">
         <input type="hidden" class="form-control" id="Melamar" name="Melamar" value="Sudah">
-        <input type="hidden" class="form-control" id="Periode" name="Periode" value="{{ $periode->Periode_Penerimaan }}">
+        <input type="hidden" class="form-control" id="id_wartawan" name="id_wartawan" value="{{ $data->id_user }}">
         <input type="hidden" class="form-control" id="id_user" name="id_user" value="{{ auth()->user()->id }}">
         <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>

@@ -38,7 +38,7 @@
     <thead class="table-dark">
         <tr>
             <th>No</th>
-            <th>Kode/Simbol</th>
+            {{-- <th>Kode/Simbol</th> --}}
             <th>Kriteria</th>
             <th>Bobot</th>
             <th>Perbaikan Bobot</th>
@@ -50,7 +50,7 @@
     @foreach($data as $data)
         <tr class="text=center">
             <td>{{$loop->iteration}}</td>
-            <td>{{$data->Kode}}</td>
+            {{-- <td>{{$data->Kode}}</td> --}}
             <td>{{$data->Kriteria}}</td>
             <td>{{$data->Bobot}}</td>
             <td>{{$data->Perbaikan_Bobot}}</td>

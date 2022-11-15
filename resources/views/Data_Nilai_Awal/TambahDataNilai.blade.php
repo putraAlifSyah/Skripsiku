@@ -6,7 +6,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Tambah Data</h1>
+                <h1>Input Nilai</h1>
             </div>
         </div>
         </div>
@@ -42,7 +42,7 @@
             @for ($i = 6; $i < count($namaKolom); $i++)
                 <div class="form-group">
                     <label for="{{ $namaKolom[$i] }}">{{ str_replace('_', ' ', $namaKolom[$i]) }}</label>
-                    <input type="text" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="">
+                    <input type="number" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="">
                 </div>
             @endfor
         @endif

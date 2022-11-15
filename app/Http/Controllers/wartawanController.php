@@ -31,7 +31,7 @@ class wartawanController extends Controller
     
     public function index()
     {
-        $data=Wartawan::where('periode', '!=', 'kosong')->get();
+        $data=Wartawan::where('Melamar', 'sudah')->get();
         return view ('/Data_Wartawan/DataWartawan', [
             'data'=>$data,
         ]);

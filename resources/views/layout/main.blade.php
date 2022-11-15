@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('style/assets/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -31,6 +32,7 @@
     <script src="{{ asset('style/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('style/assets/js/plugins.js') }}"></script>
     <script src="{{ asset('style/assets/js/main.js') }}"></script>
+    <script src="https://kit.fontawesome.com/85759de0b0.js" crossorigin="anonymous"></script>
  
     <aside id="left-panel" class="left-panel" style="background-image:url('wallpeper.jpg')">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -38,40 +40,40 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/home">Hello, Putra</a>
-                <a class="navbar-brand hidden" href="">H</a>
+                <a class="navbar-brand" href="/home">Hello, Administrator</a>
+                <a class="navbar-brand hidden" href="">A</a>
             </div>
    
             {{-- dd(Auth::user()->LevelLogin); --}}
             <div id="main-menu" class="main-menu collapse navbar-collapse" >
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/admin/home"><i class="menu-icon fa fa-dashboard"></i>Home</a>
+                        <a href="/admin/home"><i class="menu-icon fa-solid fa-house-user"></i>Home</a>
                     </li>
                     <li>
-                        <a href="/admin/wartawan"> <i class="menu-icon fa fa-calendar"></i>Data Calon Wartawan</a>
+                        <a href="/admin/wartawan"><i class="menu-icon fa-solid fa-person"></i>Calon Wartawan</a>
                     </li>
                     <li>
-                        <a href="/admin/periode"> <i class="menu-icon fa fa-calendar"></i>Periode</a>
+                        <a href="/admin/periode"><i class="menu-icon fa-solid fa-calendar-days"></i>Periode</a>
                     </li>
                     <li>
-                        <a href="/admin/datakriteria"> <i class="menu-icon fa fa-calendar"></i>Data Kriteria</a>
+                        <a href="/admin/datakriteria"><i class="menu-icon fa-solid fa-scale-balanced"></i>Kriteria</a>
                     </li>
                     <li>
-                        <a href="/admin/nilaiawal"> <i class="menu-icon fa fa-calendar"></i>Data Nilai</a>
+                        <a href="/admin/nilaiawal"><i class="menu-icon fa-solid fa-arrow-down-9-1"></i>Data Nilai</a>
                     </li>
                     <li>
-                        <a href="/adminabout"> <i class="menu-icon fa fa-info"></i>Hasil SPK</a>
+                        <a href="/adminabout"><i class="menu-icon fa-solid fa-square-poll-vertical"></i>Hasil SPK</a>
                     </li>
                     <li>
-                        <a hidden href="/" type="button" id="button"> <i class="menu-icon fa fa-info"></i>Hasil SPK</a>
+                        <a hidden href="/" type="button" id="button"><i class="menu-icon fa fa-dashboard"></i>  Hasil SPK</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
  
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel" style="margin-top: -100px">
         <header id="header" class="header">
             <div class="header-menu">
                 <div class="col-sm-7">
@@ -142,7 +144,7 @@
 
         @yield('juduldalam')
         
- 
+        {{-- <div class="di"></div> --}}
         @yield('konten')
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

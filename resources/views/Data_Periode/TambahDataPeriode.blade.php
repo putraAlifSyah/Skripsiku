@@ -33,11 +33,6 @@
         <div class="form-group">
             <label for="Periode_Penerimaan" class="col-xs-2 col-form-label">Periode Pendaftaran</label>
             <input type="text" class="form-control" id="Periode_Penerimaan" name="Periode_Penerimaan" value="{{ old('Periode_Penerimaan') }}">
-            {{-- @if (session('salahformat'))
-                <div class="alert alert-danger">
-                    {{ session('salahformat') }}
-                </div>
-            @endif  --}}
             @if($errors->has('Periode_Penerimaan'))
             <div class="alert alert-danger" role="alert">
                 {{ $errors->first('Periode_Penerimaan') }}
@@ -46,13 +41,18 @@
         </div>
 
         <div class="form-group">
-            <label for="Tanggal_Mulai_Ujian">Tanggal Mulai Ujian</label>
-            <input type="date" class="form-control" id="Tanggal_Mulai_Ujian" name="Tanggal_Mulai_Ujian" value="{{ old('Tanggal_Mulai_Ujian') }}">
+            <label for="Tanggal_Mulai_Pendaftaran">Tanggal Mulai Pendaftaran</label>
+            <input type="date" class="form-control" id="Tanggal_Mulai_Pendaftaran" name="Tanggal_Mulai_Pendaftaran" value="{{ old('Tanggal_Mulai_Pendaftaran') }}">
         </div>
 
         <div class="form-group">
-            <label for="Tanggal_Akhir_Ujian">Tanggal Mulai Ujian</label>
-            <input type="date" class="form-control" id="Tanggal_Akhir_Ujian" name="Tanggal_Akhir_Ujian" value="{{ old('Tanggal_Akhir_Ujian') }}">
+            <label for="Tanggal_Akhir_Pendaftaran">Tanggal Akhir Pendaftaran</label>
+            <input type="date" class="form-control" id="Tanggal_Akhir_Pendaftaran" name="Tanggal_Akhir_Pendaftaran" value="{{ old('Tanggal_Akhir_Pendaftaran') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="Tanggal_Mulai_Ujian">Tanggal Ujian</label>
+            <input type="date" class="form-control" id="Tanggal_Mulai_Ujian" name="Tanggal_Mulai_Ujian" value="{{ old('Tanggal_Mulai_Ujian') }}">
         </div>
 
         <div class="form-group">

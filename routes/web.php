@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// coba tambah kolom
-Route::get('/coba/tambah', 'cobaController@tambahColomn');
-Route::get('/coba/hapus', 'cobaController@hapusKolom');
-
 // Boleh diakses sebelum login
 Route::get('/', 'pelamarController@index');
 
@@ -25,8 +21,11 @@ Route::get('/', 'pelamarController@index');
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     // data kriteria
     Route::get('/biodata', 'BiodataController@index');
+    Route::get('/periodeDaftar/{periode}/daftar', 'BiodataController@create');
     Route::post('/IsiBiodata', 'BiodataController@store');
-    
+    Route::get('/editBiodata/{user}', 'BiodataController@edit');
+    Route::patch('/simpanEdit', 'BiodataController@update');
+    // Route::get('/periodeDaftar/{periode}/daftar', 'PeriodeController@Daftar');
 });
 // hanya boleh diakses admin
 
