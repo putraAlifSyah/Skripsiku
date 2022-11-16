@@ -72,6 +72,9 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     // view nilai vektor v
     Route::get('/admin/vektorv', 'VektorVController@index');
 
+    // Hasil akhir
+    Route::get('/admin/hasilakhir', 'HasilAkhirController@index');
+
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');
     Route::get('/admin/wartawan/{wartawan}/verifikasi', 'wartawanController@verifikasi');

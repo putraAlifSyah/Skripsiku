@@ -31,7 +31,7 @@
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
-        <strong>Data Data Nilai Awal</strong>
+        <strong>Data Akhir</strong>
     </div>
     {{-- <div class="pull-right">
         <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
@@ -44,12 +44,10 @@
         <tr>
             <th>No</th>
             <th>Nama Calon</th>
-            @if (count($namaKolom) > 6)
-                @for ($i = 6; $i < count($namaKolom); $i++)
-                    <th>{{ str_replace('_', ' ', $namaKolom[$i]) }}</th>
-                @endfor
-            @endif
-            </tr>
+            <th>Periode</th>
+            <th>Hasil</th>
+            <th>Aksi</th>
+        </tr>
     </thead>
     <tbody class="table table-hover">
    
@@ -57,14 +55,13 @@
         <tr class="text=center">
             <td>{{$loop->iteration}}</td>
             <td>{{$data->nama_calon}}</td>
-            @if (count($namaKolom) > 6)
-            @for ($i = 6; $i < count($namaKolom); $i++)
-                @php
-                    $namaValue=$namaKolom[$i];
-                @endphp
-                <td>{{ $data->$namaValue }}</td>
-            @endfor
-            @endif
+            <td>{{$data->periode}}</td>
+            <td>{{$data->hasil}}</td>
+            <td>
+                <div class="card-body">
+                    <a href="datakriteria/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Kirim Notifikasi</a>
+                </div>
+                </td>
         </tr>
     </div>
     @endforeach

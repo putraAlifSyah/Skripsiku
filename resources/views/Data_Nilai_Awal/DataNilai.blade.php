@@ -27,20 +27,14 @@
 @section('konten')
 
 {{-- nilai awal --}}
-<div class="container">
+{{-- <div class="container"> --}}
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
         <strong>Data Data Nilai Awal</strong>
     </div>
-    <div class="pull-right">
-        <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
-    </div>
     <table class="table table-striped">
     <thead class="table-dark">
-        {{-- @php
-            dd($namaKolom);
-        @endphp --}}
         <tr>
             <th>No</th>
             <th>Nama Calon</th>
@@ -70,8 +64,8 @@
             @endif
                 <td>
                 <div class="card-body">
-                    <a href="nilaiawal/{{$data->id}}/input" class="btn-sm btn-primary rounded tombol">Input Nilai</a>
-                    <a href="nilaiawal/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Edit Nilai</a>
+                    <a href="nilaiawal/{{$data->id}}/input" class="btn-sm btn-primary rounded tombol">Input</a>
+                    {{-- <a href="nilaiawal/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Edit Nilai</a> --}}
                     <div class="clear"></div>
                 </div>
                 </td>
@@ -97,7 +91,7 @@
 
 {{-- Akhir --}}
 
-@if (session('status'))
+{{-- @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
@@ -107,6 +101,6 @@
             <div class="alert alert-danger">
                 {{ session('gagal') }}
             </div>
-        @endif
+        @endif --}}
 @endsection
 

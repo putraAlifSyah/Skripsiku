@@ -71,7 +71,7 @@
                         <a href="/admin/nilaiawal"><i class="menu-icon fa-solid fa-arrow-down-9-1"></i>Data Nilai</a>
                     </li> --}}
                     <li>
-                        <a href="/adminabout"><i class="menu-icon fa-solid fa-square-poll-vertical"></i>Hasil SPK</a>
+                        <a href="/admin/hasilakhir"><i class="menu-icon fa-solid fa-square-poll-vertical"></i>Hasil SPK</a>
                     </li>
                     <li>
                         <a hidden href="/" type="button" id="button"><i class="menu-icon fa fa-dashboard"></i>  Hasil SPK</a>

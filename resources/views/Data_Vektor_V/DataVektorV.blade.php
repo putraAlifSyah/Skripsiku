@@ -33,9 +33,9 @@
     <div class="pull-left" style="margin-bottom:10px">
         <strong>Data Akhir</strong>
     </div>
-    <div class="pull-right">
+    {{-- <div class="pull-right">
         <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
-    </div>
+    </div> --}}
     <table class="table table-striped">
     <thead class="table-dark">
         {{-- @php

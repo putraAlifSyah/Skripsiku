@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataKriteria;
+use App\Models\HasilAkhir;
 use App\Models\NilaiAwal;
 use App\Models\NilaiVektorS;
 use App\Models\NilaiVektorV;
@@ -111,6 +112,10 @@ class NilaiAwalController extends Controller
         for ($i=0; $i < count($idCalon) ; $i++) { 
             $Wartawan1 = NilaiVektorS::where('id_calon', $idCalon[$i])->select('jumlah')->first();
             NilaiVektorV::where('id_calon', $idCalon[$i])
+                    ->update([
+                        'hasil' => $Wartawan1->jumlah/$totalNilai,
+                    ]);
+            HasilAkhir::where('id_calon', $idCalon[$i])
                     ->update([
                         'hasil' => $Wartawan1->jumlah/$totalNilai,
                     ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HasilAkhir;
 use App\Models\NilaiAwal;
 use App\Models\NilaiVektorS;
 use App\Models\NilaiVektorV;
@@ -38,12 +39,20 @@ class wartawanController extends Controller
             'nama_calon' => $data[0]['Nama'],
             'hasil' => 0,
         ]);
+
+        HasilAkhir::create([
+            'id_calon' => $data[0]['id_wartawan'],
+            'nama_calon' => $data[0]['Nama'],
+            'kontak' => $data[0]['Handphone'],
+            'periode' => $data[0]['Periode'],
+            'hasil' => 0,
+        ]);
         return redirect('/admin/wartawan')->with ('status', 'Data telah berhasil diverifkasi');
     }
     
     public function index()
     {
-        $data=Wartawan::where('Melamar', 'sudah')->get();
+        $data=Wartawan::where('Verifikasi', 'Belum')->get();
         return view ('/Data_Wartawan/DataWartawan', [
             'data'=>$data,
         ]);
