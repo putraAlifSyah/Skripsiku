@@ -16,7 +16,9 @@ class pelamarController extends Controller
      */
     public function index()
     {
-        $periode=Periode::all();
+        // mengambil data periode yang tidak lewat dari tanggal hari ini (masih buka)
+        $periode=Periode::where('Tanggal_Akhir_Pendaftaran', '<=', date("Y-m-d"))->get();
+        // $periode=Periode::all();
         $data = Wartawan::all();
         if (Auth::check() && Wartawan::where('id_user', Auth::user()->id )->first())
         {

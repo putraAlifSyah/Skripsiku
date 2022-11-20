@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css"/>
 </head>
 <body>
     <script src="{{ asset('style/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
@@ -120,8 +123,16 @@
                             <img class="user-avatar rounded-circle" src="{{ asset('style/images/admin.jpg') }}">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="/user/profile"><i class="fa fa -cog"></i>Settings</a>
+                            <!-- <a class="nav-link" href="http://127.0.0.1:8000/"><i class="fa fa-power -off"></i>Logout</a> -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
                         </div>
                     </div>
  
@@ -154,7 +165,6 @@
         
         {{-- <div class="di"></div> --}}
         @yield('konten')
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>

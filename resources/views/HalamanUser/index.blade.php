@@ -3,7 +3,15 @@
 @section('title', 'Home')
 
 @section('konten')
-
+@php
+    // echo "Tanggal akhir pendaftaran".$tanggal->Tanggal_Akhir_Pendaftaran;
+    // echo "          Tanggal hari ini".date("Y-m-d");
+    // echo $tanggal->Tanggal_Akhir_Pendaftaran;
+    // dd(date("Y-m-d")>$tanggal->Tanggal_Akhir_Pendaftaran);
+    // $tanggalAkhir=$tanggal->Tanggal_Akhir_Pendaftaran;
+    // dd($tanggal->Tanggal_Akhir_Pendaftaran);
+    // dd($periode[0]['Periode_Penerimaan']);
+@endphp
     {{-- konten --}}
     {{-- {{ dd() }} --}}
     {{-- <embed src="{{ asset('storage/'. $data[0]['Foto'])}}" width="800px" height="2100px" /> --}}
@@ -75,18 +83,19 @@
             @foreach ($periode as $data)
                 <div class="col-md-4 my-3">
                     <div class="card">
-                        <div class="card-body">
-                        <h5 class="card-title">Terbuka</h5>
-                        <p class="card-text">
-                            Periode Pendaftaran: {{ $data->Periode_Penerimaan }} <br>
-                            Tanggal Pendaftaran: {{ $data->Tanggal_Mulai_Pendaftaran }} s/d {{ $data->Tanggal_Akhir_Pendaftaran }} <br>
-                            Tanggal Ujian : {{ $data->Tanggal_Mulai_Ujian }}
+                            <div class="card-body">
+                            <h5 class="card-title">Terbuka</h5>
+                            <p class="card-text">
+                                Periode Pendaftaran: {{ $data['Periode_Penerimaan'] }} <br>
+                                Tanggal Pendaftaran: {{ $data['Tanggal_Mulai_Pendaftaran'] }} s/d {{ $data['Tanggal_Akhir_Pendaftaran'] }} <br>
+                                Tanggal Ujian : {{ $data['Tanggal_Mulai_Ujian'] }}
                             </p>
                             <a href="/periodeDaftar/{{ $data->id }}/daftar" class="btn btn-primary">Daftar</a>
-                            {{-- <a href="/periodeDaftar/{{ $data->id }}/daftar" class="btn btn-primary">Daftar</a> --}}
+                                {{-- <a href="/periodeDaftar/{{ $data->id }}/daftar" class="btn btn-primary">Daftar</a> --}}
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{-- @endif --}}
             @endforeach
         </div>
             </div>

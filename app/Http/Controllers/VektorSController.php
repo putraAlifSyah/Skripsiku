@@ -17,7 +17,7 @@ class VektorSController extends Controller
     {
         $namaKolom = Schema::getColumnListing('nilai_vektor_s');
         return view ('/Data_Vektor_S/DataVektorS', [
-            'datas'=>NilaiVektorS::paginate(5),
+            'datas'=>NilaiVektorS::orderBy('jumlah', 'desc')->paginate(5),
             'namaKolom'=> $namaKolom,
         ]);
     }

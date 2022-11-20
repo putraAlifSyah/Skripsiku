@@ -42,14 +42,15 @@
             </div>
         </div>
         <div class="form-group row mt-3">
-            <label for="Pendidikan" class="col-sm-2 col-form-label">Pendidikan</label>
+            <label for="Pendidikan" class="col-sm-2 col-form-label">Pendidikan Terakhir</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Pendidikan" name="Pendidikan">
-                @if($errors->has('Pendidikan'))
-                <div class="alert alert-danger" role="alert">
-                    {{ $errors->first('Pendidikan') }}
-                </div>
-                @endif
+                <select name="Pendidikan" class="form-control" id="Pendidikan">
+                    <option value="">Pilih Pendidikan Terakhir</option>
+                    <option value="SD/Sederajat">SD/Sederajat</option>
+                    <option value="SMP/Sederajat">SMP/Sederajat</option>
+                    <option value="SMA/Sederajat">SMK/Sederajat</option>
+                    <option value="Sarjana/Lebih Tinggi">Sarjana/Lebih Tinggi</option>
+                </select>
             </div>
         </div>
         <div class="form-group row mt-3">

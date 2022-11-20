@@ -19,6 +19,7 @@ class CreateHasilAkhirsTable extends Migration
             $table->string('nama_calon');
             $table->string('kontak');
             $table->string('periode');
+            $table->string('status');
             $table->double('hasil');
             $table->timestamps();
         });

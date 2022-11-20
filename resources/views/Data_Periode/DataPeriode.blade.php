@@ -34,7 +34,7 @@
     <div class="pull-right">
         <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped" id="myTable">
     <thead class="table-dark">
         <tr>
             <th>No</th>
@@ -46,30 +46,29 @@
             <th>Aksi</th>
         </tr>
     </thead>
-    <tbody class="table table-hover">
-   
-    @foreach($data as $data)
-        <tr class="text=center">
-            <td>{{$loop->iteration}}</td>
-            <td>{{$data->Periode_Penerimaan}}/{{$data->Periode_Penerimaan+1}}</td>
-            <td>{{$data->Tanggal_Mulai_Pendaftaran}}</td>
-            <td>{{$data->Tanggal_Akhir_Pendaftaran}}</td>
-            <td>{{$data->Tanggal_Mulai_Ujian}}</td>
-            <td>{{$data->Keterangan}}</td>
-                <td>
-                <div class="card-body">
-                    <a href="periode/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Ubah</a>
-                    <form action="/admin/periode/{{$data->id}}" method="post" class="ini">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn-xs btn-danger rounded" onclick="return confirm('Are you sure?')" style="font-size:13.5px">Hapus</buton>          
-                    </form> 
-                    <div class="clear"></div>
-                </div>
-                </td>
-        </tr>
-    </div>
-    @endforeach
+    <tbody>
+        @foreach($data as $data)
+            <tr class="text=center">
+                <td>{{$loop->iteration}}</td>
+                <td>{{$data->Periode_Penerimaan}}/{{$data->Periode_Penerimaan+1}}</td>
+                <td>{{$data->Tanggal_Mulai_Pendaftaran}}</td>
+                <td>{{$data->Tanggal_Akhir_Pendaftaran}}</td>
+                <td>{{$data->Tanggal_Mulai_Ujian}}</td>
+                <td>{{$data->Keterangan}}</td>
+                    <td>
+                    <div class="card-body">
+                        <a href="periode/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Ubah</a>
+                        <form action="/admin/periode/{{$data->id}}" method="post" class="ini">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn-xs btn-danger rounded mt-2" onclick="return confirm('Are you sure?')" style="font-size:13.5px">Hapus</buton>          
+                        </form> 
+                        <div class="clear"></div>
+                    </div>
+                    </td>
+            </tr>
+        </div>
+        @endforeach
 
     </tbody>
     </table>

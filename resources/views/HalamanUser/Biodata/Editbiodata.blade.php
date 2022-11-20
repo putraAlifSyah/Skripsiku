@@ -54,7 +54,13 @@
         <div class="form-group row mt-3">
             <label for="Pendidikan" class="col-sm-2 col-form-label">Pendidikan</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Pendidikan" name="Pendidikan" value="{{ $data->Pendidikan }}">
+                <select name="Pendidikan" class="form-control" id="Pendidikan">
+                    <option value="{{ $data->Pendidikan }}">{{ $data->Pendidikan }}</option>
+                        <option value="SD/Sederajat">SD/Sederajat</option>
+                        <option value="SMP/Sederajat">SMP/Sederajat</option>
+                        <option value="SMA/Sederajat">SMK/Sederajat</option>
+                        <option value="Sarjana/Lebih Tinggi">Sarjana/Lebih Tinggi</option>
+                </select>
                 @if($errors->has('Pendidikan'))
                 <div class="alert alert-danger" role="alert">
                     {{ $errors->first('Pendidikan') }}
@@ -141,8 +147,5 @@
         <input type="hidden" class="form-control" id="id_user" name="id_user" value="{{ auth()->user()->id }}">
         <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
-    @if($errors->any())
-        {!! implode('', $errors->all('<div>:message</div>')) !!}
-    @endif
 </div>
 @endsection

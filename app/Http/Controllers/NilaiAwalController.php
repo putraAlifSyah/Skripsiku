@@ -7,6 +7,7 @@ use App\Models\HasilAkhir;
 use App\Models\NilaiAwal;
 use App\Models\NilaiVektorS;
 use App\Models\NilaiVektorV;
+use App\Models\Wartawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,7 @@ class NilaiAwalController extends Controller
     public function index()
     {
         $namaKolom = Schema::getColumnListing('nilai_awals');
+        
         return view ('/Data_Nilai_Awal/DataNilai', [
             'datas'=>NilaiAwal::paginate(5),
             'namaKolom'=> $namaKolom,
@@ -34,15 +36,18 @@ class NilaiAwalController extends Controller
      */
     public function create(Request $request)
     {
+
         $data=NilaiAwal::where('id', $request->nilaiawal)->first();
         $namaKolom = Schema::getColumnListing('nilai_awals');
         if (count($namaKolom) < 7){
             return redirect('/admin/nilaiawal')->with('gagal', 'Buat kriteria terlebih dahulu');
         }
-        // dd($data->nama_calon);
+        // dd($data->id_calon);
+        $dataWartawan = Wartawan::where('id_wartawan', $data->id_calon)->first();
         return view ('Data_Nilai_Awal/TambahDataNilai', [
             'data'=>$data,
-            'namaKolom' => $namaKolom
+            'namaKolom' => $namaKolom,
+            'dataWartawan' => $dataWartawan
         ]);
     }
 

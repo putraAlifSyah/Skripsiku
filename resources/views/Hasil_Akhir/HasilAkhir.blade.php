@@ -46,20 +46,29 @@
             <th>Nama Calon</th>
             <th>Periode</th>
             <th>Hasil</th>
+            <th>Status</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody class="table table-hover">
    
-    @foreach($datas as $data)
+    @foreach($hasilakhir as $data)
         <tr class="text=center">
             <td>{{$loop->iteration}}</td>
             <td>{{$data->nama_calon}}</td>
             <td>{{$data->periode}}</td>
             <td>{{$data->hasil}}</td>
+            <td>{{$data->status}}</td>
             <td>
                 <div class="card-body">
-                    <a href="datakriteria/{{$data->id}}/edit" class="btn-sm btn-primary rounded tombol">Kirim Notifikasi</a>
+                    <a href="" class="btn btn-success rounded">Terima</a>
+                    <a href="" class="btn btn-danger rounded">Tolak</a>
+                    <form action="/admin/notif/{{$data->id}}" method="get" class="ini">
+                        @csrf
+                        <input type="hidden" value="{{ $data->kontak }}" name="kontak">
+                        <button type="submit" class=" btn btn-warning rounded"><i class="menu-icon fa-brands fa-whatsapp"></i>   Notifikasi</buton>          
+                    </form> 
+                    {{-- <a href="/admin/notif/{{$data->}}" class="btn-sm btn-primary rounded tombol"><i class="menu-icon fa-brands fa-whatsapp"></i>   Kirim Notifikasi</a> --}}
                 </div>
                 </td>
         </tr>
@@ -70,7 +79,7 @@
 </table>
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-      {{ $datas->links() }}
+      {{ $hasilakhir->links() }}
     </ul>
   </nav>
     </div>

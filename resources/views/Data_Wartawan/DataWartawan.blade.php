@@ -35,13 +35,22 @@
         <strong>Data Wartawan</strong>
     </div>
     <div class="pull-right">
-        <select name="Periode" class="form-control mb-2" id="Periode">
+        <div class="input-group mb-3">
+            <select name="Periode" class="form-control mb-1 mr-2" id="Periode" style="display: inline">
+                <option value="">Pilih Periode</option>
+                    <option value="">2021</option>
+                    <option value="">2022</option>
+            </select>
+            <button class="btn-sm btn-outline-secondary rounded mt-0.5" type="button" id="button-addon2" style="height: 35px">Filter</button>
+          </div>
+        {{-- <select name="Periode" class="form-control mb-2" id="Periode" style="display: inline">
             <option value="">Pilih Periode</option>
                 <option value="">2021</option>
                 <option value="">2022</option>
-        </select>
+        </select> --}}
+        {{-- <a href="">Filter</a> --}}
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped" id="myTable">
     <thead class="table-dark">
         <tr>
             <th>No</th>
@@ -88,11 +97,11 @@
     </table>
     </div>
     </div>
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     </div>
 <!-- </div> -->
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
 @endsection

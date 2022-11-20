@@ -15,7 +15,7 @@ class HasilAkhirController extends Controller
     public function index()
     {
         return view ('/Hasil_Akhir/HasilAkhir', [
-            'datas'=>HasilAkhir::orderBy('hasil', 'desc')->paginate(5),
+            'hasilakhir'=>HasilAkhir::orderBy('hasil', 'desc')->paginate(5),
         ]);
     }
 
@@ -24,9 +24,9 @@ class HasilAkhirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, HasilAkhir $hasilAkhir)
     {
-        //
+        dd($request->kontak);
     }
 
     /**

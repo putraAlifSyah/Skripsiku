@@ -45,6 +45,7 @@ class wartawanController extends Controller
             'nama_calon' => $data[0]['Nama'],
             'kontak' => $data[0]['Handphone'],
             'periode' => $data[0]['Periode'],
+            'status' => 'Dalam Penilaian',
             'hasil' => 0,
         ]);
         return redirect('/admin/wartawan')->with ('status', 'Data telah berhasil diverifkasi');

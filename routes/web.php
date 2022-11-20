@@ -49,7 +49,7 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::patch('/admin/datakriteria/{datakriteria}', 'kriteriaController@update');
 
     // jadwal/periode pendaftaran
-    Route::get('/admin/periode', 'PeriodeController@index');
+    Route::get('/admin/periode', 'PeriodeController@index')->name('periode');
     Route::get('/admin/periode/tambah', 'PeriodeController@create');
     Route::post('/admin/periode', 'PeriodeController@store');
     Route::delete('/admin/periode/{periode}', 'PeriodeController@destroy');
@@ -74,6 +74,9 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 
     // Hasil akhir
     Route::get('/admin/hasilakhir', 'HasilAkhirController@index');
+
+    // Kirim notif
+    Route::get('/admin/notif/{hasil}', 'WhatsaAppNotif@whatsappNotification');
 
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');

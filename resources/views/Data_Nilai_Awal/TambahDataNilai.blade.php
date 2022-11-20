@@ -40,13 +40,32 @@
 
         @if (count($namaKolom) > 6)
             @for ($i = 6; $i < count($namaKolom); $i++)
-            @php
-                $kolom=$namaKolom[$i];
-            @endphp
-                <div class="form-group">
-                    <label for="{{ $namaKolom[$i] }}">{{ str_replace('_', ' ', $namaKolom[$i]) }}</label>
-                    <input type="number" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="{{ $data->$kolom }}">
-                </div>
+                @php
+                    $kolom=$namaKolom[$i];
+                @endphp
+                @if ($namaKolom[$i] == 'Pendidikan_Terakhir')
+                    @php
+                        $nilaiPendidikan = 0;
+                        if($dataWartawan->Pendidikan == "SD/Sederajat"){
+                            $nilaiPendidikan = 30;
+                        }
+                        elseif ($dataWartawan->Pendidikan == "SMP/Sederajat"){
+                            $nilaiPendidikan = 40;
+                        }
+                        elseif ($dataWartawan->Pendidikan == "SMA/Sederajat"){
+                            $nilaiPendidikan = 60;
+                        }
+                        elseif ($dataWartawan->Pendidikan == "Sarjana/Lebih Tinggi"){
+                            $nilaiPendidikan = 90;
+                        }
+                        @endphp
+                        <input type="hidden" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="{{ $nilaiPendidikan }}">
+                @else
+                    <div class="form-group">
+                        <label for="{{ $namaKolom[$i] }}">{{ str_replace('_', ' ', $namaKolom[$i]) }}</label>
+                        <input type="number" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="{{ $data->$kolom }}">
+                    </div>
+                @endif
             @endfor
         @endif
 
@@ -62,4 +81,5 @@
     </tbody>
     </table>
 <!-- </div> -->
+
 @endsection     

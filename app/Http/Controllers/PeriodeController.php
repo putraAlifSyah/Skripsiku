@@ -7,6 +7,8 @@ use App\Models\Periode;
 use App\Models\User;
 use App\Models\Wartawan;
 use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
+// use Datatables;sss
 
 // use App\Http\Requests\cekPeriode;
 
@@ -32,7 +34,7 @@ class PeriodeController extends Controller
 
     public function index()
     {
-        $data=Periode::all();
+        $data=Periode::get();
         return view ('/Data_Periode/DataPeriode', [
             'data'=>$data,
         ]);
