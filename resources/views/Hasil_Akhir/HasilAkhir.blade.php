@@ -33,9 +33,26 @@
     <div class="pull-left" style="margin-bottom:10px">
         <strong>Data Akhir</strong>
     </div>
-    {{-- <div class="pull-right">
-        <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
-    </div> --}}
+    <div class="pull-right">
+        <div class="input-group mb-3">
+            <form action="/admin/hasilakhir/filter" style="display: flex" method="get"> 
+            {{-- @csrf --}}
+            <select name="Periode" class="form-control mb-1 mr-2" id="Periode" style="display: inline">
+                <option value="">Pilih Periode</option>
+                    @foreach ($Periode as $item)
+                        <option value="{{ $item->Periode_Penerimaan }}">{{ $item->Periode_Penerimaan }}</option>
+                    @endforeach
+            </select>
+            <button class="btn-sm btn-outline-secondary rounded mt-0.5" type="submit" id="button-addon2" style="height: 35px">Filter</button>
+        </form>
+        </div>
+        {{-- <select name="Periode" class="form-control mb-2" id="Periode" style="display: inline">
+            <option value="">Pilih Periode</option>
+                <option value="">2021</option>
+                <option value="">2022</option>
+        </select> --}}
+        {{-- <a href="">Filter</a> --}}
+    </div>  
     <table class="table table-striped">
     <thead class="table-dark">
         {{-- @php

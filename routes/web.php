@@ -74,12 +74,14 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 
     // Hasil akhir
     Route::get('/admin/hasilakhir', 'HasilAkhirController@index');
+    Route::get('/admin/hasilakhir/filter', 'HasilAkhirController@filter');
 
     // Kirim notif
     Route::get('/admin/notif/{hasil}', 'WhatsaAppNotif@whatsappNotification');
 
     // jadwal/periode pendaftaran
     Route::get('/admin/wartawan', 'wartawanController@index');
+    Route::get('/admin/filter', 'wartawanController@filter');
     Route::get('/admin/wartawan/{wartawan}/verifikasi', 'wartawanController@verifikasi');
     // Route::post('/admin/periode', 'wartawanController@store');
     // Route::delete('/admin/periode/{periode}', 'wartawanController@destroy');

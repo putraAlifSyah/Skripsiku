@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HasilAkhir;
+use App\Models\Periode;
 use Illuminate\Http\Request;
 
 class HasilAkhirController extends Controller
@@ -12,10 +13,28 @@ class HasilAkhirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function filter(Request $request)
+    {
+        // dd($request->Periode);
+        if ($request->Periode == NULL) {
+            return redirect('/admin/hasilakhir');
+        }
+        else{
+            $hasilakhir=HasilAkhir::where('Periode', $request->Periode)->paginate(5);
+            $Periode=Periode::all();
+            return view ('/Hasil_Akhir/HasilAkhir', [
+                'hasilakhir'=>$hasilakhir,
+                'Periode' => $Periode
+            ]);
+        }
+    }
+
     public function index()
     {
         return view ('/Hasil_Akhir/HasilAkhir', [
             'hasilakhir'=>HasilAkhir::orderBy('hasil', 'desc')->paginate(5),
+            'Periode' => $Periode=Periode::all()
         ]);
     }
 

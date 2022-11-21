@@ -24,7 +24,7 @@ class NilaiAwalController extends Controller
         $namaKolom = Schema::getColumnListing('nilai_awals');
         
         return view ('/Data_Nilai_Awal/DataNilai', [
-            'datas'=>NilaiAwal::paginate(5),
+            'datas'=>NilaiAwal::orderBy('updated_at', 'asc')->paginate(5),
             'namaKolom'=> $namaKolom,
         ]);
     }
@@ -36,7 +36,6 @@ class NilaiAwalController extends Controller
      */
     public function create(Request $request)
     {
-
         $data=NilaiAwal::where('id', $request->nilaiawal)->first();
         $namaKolom = Schema::getColumnListing('nilai_awals');
         if (count($namaKolom) < 7){

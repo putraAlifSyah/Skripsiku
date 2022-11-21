@@ -6,6 +6,7 @@ use App\Models\HasilAkhir;
 use App\Models\NilaiAwal;
 use App\Models\NilaiVektorS;
 use App\Models\NilaiVektorV;
+use App\Models\Periode;
 use Illuminate\Http\Request;
 use App\Models\Wartawan;
 
@@ -16,6 +17,22 @@ class wartawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function filter(Request $request)
+    {
+        // dd($request->Periode);
+        if ($request->Periode == NULL) {
+            return redirect('/admin/wartawan');
+        }
+        else{
+            $data=Wartawan::where('Periode', $request->Periode)->get();
+            $Periode=Periode::all();
+            return view ('/Data_Wartawan/DataWartawan', [
+                'data'=>$data,
+                'Periode' => $Periode
+            ]);
+        }
+    }
 
     public function verifikasi(Request $request){
         wartawan::where('id_wartawan', $request->wartawan)
@@ -51,11 +68,16 @@ class wartawanController extends Controller
         return redirect('/admin/wartawan')->with ('status', 'Data telah berhasil diverifkasi');
     }
     
-    public function index()
+    public function index(Request $request)
     {
+        if ($request[0] != NULL) {
+            dd($request) ;
+        }
         $data=Wartawan::where('Verifikasi', 'Belum')->get();
+        $Periode=Periode::all();
         return view ('/Data_Wartawan/DataWartawan', [
             'data'=>$data,
+            'Periode' => $Periode
         ]);
     }
 
@@ -109,9 +131,20 @@ class wartawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request->Periode);
+        if ($request->Periode == NULL) {
+            return redirect('/admin/wartawan');
+        }
+        else{
+            $data=Wartawan::where('Periode', $request->Periode)->get();
+            $Periode=Periode::all();
+            return view ('/Data_Wartawan/DataWartawan', [
+                'data'=>$data,
+                'Periode' => $Periode
+            ]);
+        }
     }
 
     /**
