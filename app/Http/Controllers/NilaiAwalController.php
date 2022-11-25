@@ -24,7 +24,7 @@ class NilaiAwalController extends Controller
         $namaKolom = Schema::getColumnListing('nilai_awals');
         
         return view ('/Data_Nilai_Awal/DataNilai', [
-            'datas'=>NilaiAwal::orderBy('updated_at', 'asc')->paginate(5),
+            'datas'=>NilaiAwal::orderBy('updated_at', 'asc')->paginate(7),
             'namaKolom'=> $namaKolom,
         ]);
     }
@@ -81,11 +81,32 @@ class NilaiAwalController extends Controller
         $isi = $request->$nama;
             for($i = 6; $i < count($namaKolom); $i++){
                 $nama=$namaKolom[$i];
-                $isi = $request->$nama;
-                NilaiAwal::where('id', $request->id)
-                ->update([
-                    $nama => $isi
-                ]);
+                if ($namaKolom[$i] == 'Pengalaman_Kerja') {
+                    $isi = 0;
+                    if ($request->Pengalaman_Kerja <= 1) {
+                        $isi = 30;
+                    }
+                    else if ($request->Pengalaman_Kerja > 1 && $request->Pengalaman_Kerja <= 3) {
+                        $isi = 50;
+                    }
+                    else if ($request->Pengalaman_Kerja > 3 && $request->Pengalaman_Kerja <= 5) {
+                        $isi = 70;
+                    }
+                    else if ($request->Pengalaman_Kerja > 5) {
+                        $isi = 90;
+                    }
+                    NilaiAwal::where('id', $request->id)
+                    ->update([
+                        $nama => $isi
+                    ]);
+                }else{
+                    $isi = $request->$nama;
+                    NilaiAwal::where('id', $request->id)
+                    ->update([
+                        $nama => $isi
+                    ]);
+                }
+
             }
 
         // input hasil perhitungan untuk mendapatkan nilai vektor s ke tabel vektor s

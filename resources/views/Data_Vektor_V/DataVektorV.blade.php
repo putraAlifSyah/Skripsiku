@@ -31,7 +31,7 @@
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
-        <strong>Data Akhir</strong>
+        <strong>Data Data Vektor (V)</strong>
     </div>
     {{-- <div class="pull-right">
         <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>

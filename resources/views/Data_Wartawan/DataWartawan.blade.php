@@ -74,23 +74,23 @@
     </thead>
     <tbody class="table table-hover">
    
-    @foreach($data as $data)
+    @foreach($data as $datas)
         <tr class="text=center">
             <td>{{$loop->iteration}}</td>
-            <td>{{$data->Nama}}</td>
-            <td>{{$data->Alamat}}</td>
-            <td>{{$data->Handphone}}</td>
-            <td>{{$data->Pendidikan}}</td>
-            <td> <img src="{{ asset('storage/'.$data->Foto) }}" alt="" style="width: 200px"> </td>
-            <td><a href="{{ asset('storage/'.$data->Ijazah_Terakhir)}}" class="btn btn-success rounded"><i class="fa-solid fa-certificate"></i></a></td>
-            <td><a href="{{ asset('storage/'.$data->KTP)}}" class="btn btn-success rounded"><i class="fa-solid fa-id-card"></i></a></td>
-            <td><a href="{{ asset('storage/'.$data->CV)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope-open-text"></i></a></td>
-            <td><a href="{{ asset('storage/'.$data->Surat_Lamaran)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope"></i></a></td>
-            <td>{{$data->Verifikasi}}</td>
-            <td>{{$data->Periode}}/{{ $data->Periode+1 }}</td>
+            <td>{{$datas->Nama}}</td>
+            <td>{{$datas->Alamat}}</td>
+            <td>{{$datas->Handphone}}</td>
+            <td>{{$datas->Pendidikan}}</td>
+            <td> <img src="{{ asset('storage/'.$datas->Foto) }}" alt="" style="width: 200px"> </td>
+            <td><a href="{{ asset('storage/'.$datas->Ijazah_Terakhir)}}" class="btn btn-success rounded"><i class="fa-solid fa-certificate"></i></a></td>
+            <td><a href="{{ asset('storage/'.$datas->KTP)}}" class="btn btn-success rounded"><i class="fa-solid fa-id-card"></i></a></td>
+            <td><a href="{{ asset('storage/'.$datas->CV)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope-open-text"></i></a></td>
+            <td><a href="{{ asset('storage/'.$datas->Surat_Lamaran)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope"></i></a></td>
+            <td>{{$datas->Verifikasi}}</td>
+            <td>{{$datas->Periode}}/{{ $datas->Periode+1 }}</td>
                 <td>
                 <div class="card-body">
-                    <a href="wartawan/{{$data->id_wartawan}}/verifikasi" class="btn-sm btn-success rounded tombol">Verifikasi</a>
+                    <a href="wartawan/{{$datas->id_wartawan}}/verifikasi" class="btn-sm btn-success rounded tombol">Verifikasi</a>
                 </div>
                 </td>
         </tr>
@@ -99,6 +99,11 @@
 
     </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {{ $data->links() }}
+        </ul>
+      </nav>
     </div>
     </div>
     @if (session('status'))

@@ -41,7 +41,7 @@
             {{-- <th>Kode/Simbol</th> --}}
             <th>Kriteria</th>
             <th>Bobot</th>
-            <th>Perbaikan Bobot</th>
+            <th>Normalisasi Bobot</th>
             <th>Aksi</th>
         </tr>
     </thead>

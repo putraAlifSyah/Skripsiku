@@ -73,10 +73,10 @@ class wartawanController extends Controller
         if ($request[0] != NULL) {
             dd($request) ;
         }
-        $data=Wartawan::where('Verifikasi', 'Belum')->get();
+        // $data=Wartawan::where('Verifikasi', 'Belum')->get();
         $Periode=Periode::all();
         return view ('/Data_Wartawan/DataWartawan', [
-            'data'=>$data,
+            'data'=>Wartawan::where('Verifikasi', 'Belum')->paginate(7),
             'Periode' => $Periode
         ]);
     }

@@ -78,13 +78,13 @@
             <td>{{$data->status}}</td>
             <td>
                 <div class="card-body">
-                    <a href="" class="btn btn-success rounded">Terima</a>
-                    <a href="" class="btn btn-danger rounded">Tolak</a>
-                    <form action="/admin/notif/{{$data->id}}" method="get" class="ini">
-                        @csrf
+                    <a href="/admin/hasilakhir/{{$data->id_calon}}/terima" class="btn btn-success rounded">Terima</a>
+                    <a href="/admin/hasilakhir/{{$data->id_calon}}/tolak" class="btn btn-danger rounded">Tolak</a>
+                    <a href="kirimNotif/{{$data->id_calon}}" class="btn btn-warning rounded"><i class="fa-solid fa-envelope"></i>      Kirim Notif</a>
+                    {{-- <form action="kirimNotif" method="get" class="ini">
                         <input type="hidden" value="{{ $data->kontak }}" name="kontak">
                         <button type="submit" class=" btn btn-warning rounded"><i class="menu-icon fa-brands fa-whatsapp"></i>   Notifikasi</buton>          
-                    </form> 
+                    </form>  --}}
                     {{-- <a href="/admin/notif/{{$data->}}" class="btn-sm btn-primary rounded tombol"><i class="menu-icon fa-brands fa-whatsapp"></i>   Kirim Notifikasi</a> --}}
                 </div>
                 </td>
@@ -111,7 +111,7 @@
 {{-- Akhir --}}
 
 @if (session('status'))
-            <div class="alert alert-success">
+            <div class="alert alert-danger">
                 {{ session('status') }}
             </div>
         @endif

@@ -15,7 +15,7 @@ class VektorVController extends Controller
     public function index()
     {
         return view ('/Data_Vektor_V/DataVektorV', [
-            'datas'=>NilaiVektorV::paginate(5),
+            'datas'=>NilaiVektorV::paginate(10),
         ]);
     }
 

@@ -14,26 +14,10 @@ class HasilAkhirController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function filter(Request $request)
-    {
-        // dd($request->Periode);
-        if ($request->Periode == NULL) {
-            return redirect('/admin/hasilakhir');
-        }
-        else{
-            $hasilakhir=HasilAkhir::where('Periode', $request->Periode)->paginate(5);
-            $Periode=Periode::all();
-            return view ('/Hasil_Akhir/HasilAkhir', [
-                'hasilakhir'=>$hasilakhir,
-                'Periode' => $Periode
-            ]);
-        }
-    }
-
     public function index()
     {
         return view ('/Hasil_Akhir/HasilAkhir', [
-            'hasilakhir'=>HasilAkhir::orderBy('hasil', 'desc')->paginate(5),
+            'hasilakhir'=>HasilAkhir::orderBy('hasil', 'desc')->paginate(10),
             'Periode' => $Periode=Periode::all()
         ]);
     }
@@ -102,5 +86,39 @@ class HasilAkhirController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function terima(Request $request){
+        // dd($request->hasilakhir);
+        HasilAkhir::where('id_calon', $request->hasilakhir)
+                    ->update([
+                        'status'=>'Diterima',
+                    ]);
+        return redirect('/admin/hasilakhir');
+    }
+
+    public function tolak(Request $request){
+        // dd($request->hasilakhir);
+        HasilAkhir::where('id_calon', $request->hasilakhir)
+                    ->update([
+                        'status'=>'Ditolak',
+                    ]);
+        return redirect('/admin/hasilakhir');
+    }
+
+    public function filter(Request $request)
+    {
+        // dd($request->Periode);
+        if ($request->Periode == NULL) {
+            return redirect('/admin/hasilakhir');
+        }
+        else{
+            $hasilakhir=HasilAkhir::where('Periode', $request->Periode)->orderBy('hasil', 'desc')->paginate(5);
+            $Periode=Periode::all();
+            return view ('/Hasil_Akhir/HasilAkhir', [
+                'hasilakhir'=>$hasilakhir,
+                'Periode' => $Periode
+            ]);
+        }
     }
 }
