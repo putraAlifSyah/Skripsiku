@@ -1,0 +1,5 @@
+2022-12-16 22:27:32: == Sync Started by User Command
+2022-12-16 22:27:33: Start only 1 threads, limited by tasks to run
+2022-12-16 22:27:33: Copy Link 'E:/backup skripsi/Skripsi/public/storage' -> 'F:/My Drive/Project Skripsi/public/storage'
+- ERROR: cannot create link: DeviceIoControl failed: Incorrect function.  (error 1)
+2022-12-16 22:27:34: == Sync Complete. Time: 00:00:02, Speed: 0.00/s, OK: 0, Errors: 1

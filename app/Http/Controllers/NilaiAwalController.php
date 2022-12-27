@@ -77,9 +77,8 @@ class NilaiAwalController extends Controller
 
         // $nama_barang = produk::where('id_produk',$request->id_produk)->select('nama_produk')->first();
         $namaKolom = Schema::getColumnListing('nilai_awals');
-        $nama=$namaKolom[6];
-        $isi = $request->$nama;
-            for($i = 6; $i < count($namaKolom); $i++){
+        $isi = 0;
+            for($i = 0; $i < count($namaKolom); $i++){
                 $nama=$namaKolom[$i];
                 if ($namaKolom[$i] == 'Pengalaman_Kerja') {
                     $isi = 0;

@@ -50,7 +50,7 @@ class BiodataController extends Controller
             'KTP' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Foto' => 'required|file|image|max:100000',
-            'CV' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'CV' => 'required',
             'Surat_Lamaran' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Verifikasi' => 'required',
             'Melamar' => 'required',
@@ -61,7 +61,7 @@ class BiodataController extends Controller
         // dd($validatedData['Ijazah_Terakhir']);
         $validatedData['Ijazah_Terakhir'] = $request->file('Ijazah_Terakhir')->store('WartawanData');
         $validatedData['Foto'] = $request->file('Foto')->store('WartawanData');
-        $validatedData['CV'] = $request->file('CV')->store('WartawanData');
+        // $validatedData['CV'] = $request->file('CV')->store('WartawanData');
         $validatedData['Surat_Lamaran'] = $request->file('Surat_Lamaran')->store('WartawanData');
         $validatedData['KTP'] = $request->file('KTP')->store('WartawanData');
         Wartawan::create($validatedData);
@@ -113,7 +113,7 @@ class BiodataController extends Controller
             'KTP' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Ijazah_Terakhir' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Foto' => 'required|file|image|max:100000',
-            'CV' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
+            'CV' => 'required',
             'Surat_Lamaran' => 'required|file|mimes:pdf,jpg,jpeg,png|max:100000',
             'Verifikasi' => 'required',
             'Melamar' => 'required',
@@ -128,7 +128,7 @@ class BiodataController extends Controller
         // menyimpan data file baru
         $validatedData['Ijazah_Terakhir'] = $request->file('Ijazah_Terakhir')->store('WartawanData');
         $validatedData['Foto'] = $request->file('Foto')->store('WartawanData');
-        $validatedData['CV'] = $request->file('CV')->store('WartawanData');
+        // $validatedData['CV'] = $request->file('CV')->store('WartawanData');
         $validatedData['Surat_Lamaran'] = $request->file('Surat_Lamaran')->store('WartawanData');
         $validatedData['KTP'] = $request->file('KTP')->store('WartawanData');
 
@@ -140,7 +140,7 @@ class BiodataController extends Controller
         // menghapus file lama
         Storage::delete($request->old_KTP);
         Storage::delete($request->old_ijazah);
-        Storage::delete($request->old_cv);
+        // Storage::delete($request->old_cv);
         Storage::delete($request->old_suratLamaran);
         Storage::delete($request->old_foto);
 

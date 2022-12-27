@@ -64,16 +64,13 @@
 
         <div class="form-group">
             <label for="Bobot">Bobot</label>
-            <input type="number" class="form-control" id="Bobot" name="Bobot" value="{{ old('Bobot') }}" >
+            <input type="text" class="form-control" id="Bobot" name="Bobot" value="{{ old('Bobot') }}" >
             @if($errors->has('Bobot'))
             <div class="alert alert-danger" role="alert">
                 {{ $errors->first('Bobot') }}
             </div>
             @endif
         </div>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
         <div class="form-group">
             {{-- <label for="Perbaikan_Bobot">Perbaikan Bobot</label> --}}
             <input type="hidden" class="form-control" id="Perbaikan_Bobot" name="Perbaikan_Bobot" value="{{ old('Perbaikan_Bobot') }}">

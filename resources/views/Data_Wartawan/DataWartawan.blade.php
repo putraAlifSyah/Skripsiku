@@ -65,7 +65,7 @@
             <th>Foto</th>
             <th>Ijazah_Terakhir</th>
             <th>KTP</th>
-            <th>CV</th>
+            {{-- <th>CV</th> --}}
             <th>Surat_Lamaran</th>
             <th>Verifikasi</th>
             <th>Periode</th>
@@ -84,7 +84,6 @@
             <td> <img src="{{ asset('storage/'.$datas->Foto) }}" alt="" style="width: 200px"> </td>
             <td><a href="{{ asset('storage/'.$datas->Ijazah_Terakhir)}}" class="btn btn-success rounded"><i class="fa-solid fa-certificate"></i></a></td>
             <td><a href="{{ asset('storage/'.$datas->KTP)}}" class="btn btn-success rounded"><i class="fa-solid fa-id-card"></i></a></td>
-            <td><a href="{{ asset('storage/'.$datas->CV)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope-open-text"></i></a></td>
             <td><a href="{{ asset('storage/'.$datas->Surat_Lamaran)}}" class="btn btn-success rounded"><i class="fa-solid fa-envelope"></i></a></td>
             <td>{{$datas->Verifikasi}}</td>
             <td>{{$datas->Periode}}/{{ $datas->Periode+1 }}</td>

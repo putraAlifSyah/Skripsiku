@@ -116,7 +116,7 @@
                 @endif
             </div>
         </div>
-        <div class="form-group row mt-3">
+        {{-- <div class="form-group row mt-3">
             <label for="CV" class="col-sm-2 col-form-label">CV</label>
             <div class="col-sm-10">
                 <input type="file" class="form-control" id="CV" name="CV">
@@ -125,7 +125,7 @@
                     {{ $errors->first('CV') }}
                 </div>
                 @endif
-            </div>
+            </div> --}}
 
         <div class="form-group row mt-3">
             <label for="Surat_Lamaran" class="col-sm-2 col-form-label">Surat Lamaran</label>
@@ -142,6 +142,7 @@
         
 
         <input type="hidden" class="form-control" id="Verifikasi" name="Verifikasi" value="Belum">
+        <input type="hidden" class="form-control" id="CV" name="CV" value="CV_wartawan">
         <input type="hidden" class="form-control" id="Melamar" name="Melamar" value="Sudah">
         <input type="hidden" class="form-control" id="id_wartawan" name="id_wartawan" value="{{ $data->id_user }}">
         <input type="hidden" class="form-control" id="id_user" name="id_user" value="{{ auth()->user()->id }}">

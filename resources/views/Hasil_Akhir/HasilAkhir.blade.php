@@ -15,7 +15,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                         <i>Data Nilai Awal</i>
+                         <i>Data Hasil Akhir</i>
                         </ol>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
     <div class="card">
     <div class="card-body">
     <div class="pull-left" style="margin-bottom:10px">
-        <strong>Data Akhir</strong>
+        <strong>Data Akhir Hasil Perengkingan</strong>
     </div>
     <div class="pull-right">
         <div class="input-group mb-3">
@@ -46,18 +46,9 @@
             <button class="btn-sm btn-outline-secondary rounded mt-0.5" type="submit" id="button-addon2" style="height: 35px">Filter</button>
         </form>
         </div>
-        {{-- <select name="Periode" class="form-control mb-2" id="Periode" style="display: inline">
-            <option value="">Pilih Periode</option>
-                <option value="">2021</option>
-                <option value="">2022</option>
-        </select> --}}
-        {{-- <a href="">Filter</a> --}}
     </div>  
     <table class="table table-striped">
     <thead class="table-dark">
-        {{-- @php
-            dd($namaKolom);
-        @endphp --}}
         <tr>
             <th>No</th>
             <th>Nama Calon</th>
@@ -78,14 +69,9 @@
             <td>{{$data->status}}</td>
             <td>
                 <div class="card-body">
-                    <a href="/admin/hasilakhir/{{$data->id_calon}}/terima" class="btn btn-success rounded">Terima</a>
-                    <a href="/admin/hasilakhir/{{$data->id_calon}}/tolak" class="btn btn-danger rounded">Tolak</a>
-                    <a href="kirimNotif/{{$data->id_calon}}" class="btn btn-warning rounded"><i class="fa-solid fa-envelope"></i>      Kirim Notif</a>
-                    {{-- <form action="kirimNotif" method="get" class="ini">
-                        <input type="hidden" value="{{ $data->kontak }}" name="kontak">
-                        <button type="submit" class=" btn btn-warning rounded"><i class="menu-icon fa-brands fa-whatsapp"></i>   Notifikasi</buton>          
-                    </form>  --}}
-                    {{-- <a href="/admin/notif/{{$data->}}" class="btn-sm btn-primary rounded tombol"><i class="menu-icon fa-brands fa-whatsapp"></i>   Kirim Notifikasi</a> --}}
+                    <a href="/admin/hasilakhir/{{$data->id_calon}}/terima" class="btn btn-success rounded" onclick="return confirm('Ingin Mengirim Notifikasi Ke User?')">Terima</a>
+                    <a href="/admin/hasilakhir/{{$data->id_calon}}/tolak" class="btn btn-danger rounded" onclick="return confirm('Ingin Mengirim Notifikasi Ke User?')">Tolak</a>
+                    {{-- <a href="kirimNotif/{{$data->id_calon}}" class="btn btn-warning rounded"><i class="fa-solid fa-envelope"></i>      Kirim Notif</a> --}} 
                 </div>
                 </td>
         </tr>
@@ -102,13 +88,36 @@
     </div>
     </div>
     </div>
-<!-- </div> -->
-{{-- akhir --}}
 
 
-{{-- Nilai Vektor s --}}
 
-{{-- Akhir --}}
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          </script>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 @if (session('status'))
             <div class="alert alert-danger">

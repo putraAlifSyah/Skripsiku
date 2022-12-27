@@ -6,7 +6,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Input Nilai</h1>
+                <h1>Input Nilai Awal</h1>
             </div>
         </div>
         </div>
@@ -30,8 +30,6 @@
    <div class="card-body">
    <div class="row">
    <div class="col-md-4 offset-md-4">
-
-       
 
         <div class="form-group">
             <label for="nama_calon" class="col-xs-2 col-form-label">Nama Calon</label>
@@ -63,7 +61,7 @@
                 @else
                     <div class="form-group">
                         <label for="{{ $namaKolom[$i] }}">{{ str_replace('_', ' ', $namaKolom[$i]) }}</label>
-                        <input type="number" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="{{ $data->$kolom }}">
+                        <input type="text" class="form-control" id="{{ $namaKolom[$i] }}" name="{{ $namaKolom[$i] }}" value="{{ $data->$kolom }}">
                     </div>
                 @endif
             @endfor

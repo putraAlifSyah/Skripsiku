@@ -96,6 +96,11 @@ class kriteriaController extends Controller
     public function store(Request $request, Datakriteria $datakriteria)
     {
         
+        $validated = request()->validate([
+            'Kriteria' => 'required',
+            'Bobot' => 'required|integer',
+        ]);
+
         // $namaKolom=str_replace(' ', '_', $request->Kriteria);
         // dd($namaKolom);
         // dd(str_replace(' ', '_', $request->Kriteria));
@@ -239,23 +244,21 @@ class kriteriaController extends Controller
      */
     public function destroy($id)
     {
-
-        $data=DataKriteria::all();
+        $data=DataKriteria::where('id', $id)->first();
+        $data2=DataKriteria::all();
         $dataTerhapus=DataKriteria::where('id', $id)->first(['Bobot'])->Bobot;
-        
-
+        DataKriteria::destroy($id);
         // menghapus kolom kriteria di tabel nilai_awals
-        $namaKolom=str_replace(' ', '_', $data[0]['Kriteria']);
+        $namaKolom=str_replace(' ', '_', $data->Kriteria);
         // dd($namaKolom);
         self::hapusKolom("ALTER TABLE `nilai_awals` DROP `$namaKolom`");
         // menghapus kolom kriteria di tabel nilai vektor s
         self::hapusKolom("ALTER TABLE `nilai_vektor_s` DROP `$namaKolom`");
 
-        DataKriteria::destroy($id);
         $jmlBobot=0;
         $kode=[];
         $bobotSebelumnya=array();
-        foreach($data as $data){
+        foreach($data2 as $data){
             $jmlBobot+= $data->Bobot;
             array_push($kode,$data->Kode);
             array_push($bobotSebelumnya,$data->Bobot);
@@ -272,6 +275,7 @@ class kriteriaController extends Controller
             $nilaiBobotAkhir=$bobotSebelumnya[$i-1]/$jmlBobot;
             self::UbahBobot2($kode[$i-1], $jmlBobot, $nilaiBobotAkhir);
         }
+        
         return redirect('/admin/datakriteria')->with('status', 'Data telah berhasil dihapus');
     }
 }

@@ -33,14 +33,8 @@
     <div class="pull-left" style="margin-bottom:10px">
         <strong>Data Data Vektor (V)</strong>
     </div>
-    {{-- <div class="pull-right">
-        <a href="/admin/periode/tambah" class="btn-sm btn-success rounded mb-5">Tambah Data</a>
-    </div> --}}
     <table class="table table-striped">
     <thead class="table-dark">
-        {{-- @php
-            dd($namaKolom);
-        @endphp --}}
         <tr>
             <th>No</th>
             <th>Nama Calon</th>
@@ -68,13 +62,6 @@
     </div>
     </div>
     </div>
-<!-- </div> -->
-{{-- akhir --}}
-
-
-{{-- Nilai Vektor s --}}
-
-{{-- Akhir --}}
 
 @if (session('status'))
             <div class="alert alert-success">
