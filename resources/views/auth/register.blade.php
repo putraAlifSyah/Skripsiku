@@ -20,6 +20,8 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('style2/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('style2/css/main.css') }}">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	
@@ -40,7 +42,7 @@
 						<input class="input100" type="text" name="name" placeholder="Name">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa-solid fa-signature"></i>
 						</span>
 					</div>
 					
@@ -70,9 +72,15 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Register
 						</button>
 					</div>
+
+					@if($errors->all())
+					<div class="alert alert-danger mt-2" role="alert">
+						{{ "Email tidak sesuai format/Password tidak sama" }}
+					</div>
+					@endif
 
 					<div class="text-center p-t-12">
                         <a href="{{ route('login') }}" class="self-end mt-4 text-gray-600 font-bold">Already Registerd </a>

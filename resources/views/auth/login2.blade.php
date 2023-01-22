@@ -72,6 +72,11 @@
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>
+					@if($errors->first())
+					<div class="alert alert-danger" role="alert">
+						{{ "Email/Password yang anda masukkan salah" }}
+					</div>
+					@endif
 				</form>
 			</div>
 		</div>

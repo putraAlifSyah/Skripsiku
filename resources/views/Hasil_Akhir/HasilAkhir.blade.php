@@ -61,7 +61,27 @@
     <tbody class="table table-hover">
    
     @foreach($hasilakhir as $data)
-        <tr class="text=center">
+    @if ($loop->index < 5)
+    <tr class="text=center">
+        <td>{{$loop->iteration}}</td>
+        <td>{{$data->nama_calon}}</td>
+        <td>{{$data->periode}}</td>
+        <td>{{$data->hasil}}</td>
+        @if($data->status != "Diterima")
+            <td>Direkomendasikan</td>
+        @else
+            <td>{{$data->status}}</td>
+        @endif
+        <td>
+            <div class="card-body">
+                <a href="/admin/hasilakhir/{{$data->id_calon}}/terima" class="btn btn-success rounded" onclick="return confirm('Ingin Mengirim Notifikasi Ke User?')">Terima</a>
+                <a href="/admin/hasilakhir/{{$data->id_calon}}/tolak" class="btn btn-danger rounded" onclick="return confirm('Ingin Mengirim Notifikasi Ke User?')">Tolak</a>
+                {{-- <a href="kirimNotif/{{$data->id_calon}}" class="btn btn-warning rounded"><i class="fa-solid fa-envelope"></i>      Kirim Notif</a> --}} 
+            </div>
+            </td>
+    </tr>
+    @else
+        <tr class="text=center  bg-secondary">
             <td>{{$loop->iteration}}</td>
             <td>{{$data->nama_calon}}</td>
             <td>{{$data->periode}}</td>
@@ -75,6 +95,7 @@
                 </div>
                 </td>
         </tr>
+    @endif
     </div>
     @endforeach
 </tbody>

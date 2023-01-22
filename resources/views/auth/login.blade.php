@@ -57,20 +57,25 @@
 							Login
 						</button>
 					</div>
+					@if($errors->all())
+					<div class="alert alert-danger mt-2" role="alert">
+						{{ "Email/Password yang anda masukkan salah" }}
+					</div>
+					@endif
 
 					<div class="text-center p-t-12">
-						@if (Route::has('password.request'))
+						{{-- @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" class="self-end mt-4 text-gray-600 font-bold">Forgot password?</a>
                         @endif
-                        <p> OR </p>
+                        <p> OR </p> --}}
                         <a href="{{ route('register') }}" class="self-end mt-4 text-gray-600 font-bold">Register </a>
 					</div>
                     
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
+						{{-- <a class="txt2" href="#">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
+						</a> --}}
 					</div>
 				</form>
 			</div>
